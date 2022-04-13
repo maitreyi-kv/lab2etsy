@@ -1,11 +1,27 @@
-import './App.css';
+import Products from './components/Product/Products';
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import Product from './components/Product/Product';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Etsy Part 2
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Products/>} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+          <Route path="/product" element={<Product />}>
+            <Route path=":productId" element={<Product />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      {/*<Link to="/home">Home</Link>*/}
     </div>
   );
 }
