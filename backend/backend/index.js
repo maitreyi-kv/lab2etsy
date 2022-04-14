@@ -3,7 +3,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var kafka = require('./kafka/client');
+var userRoute = require('./routes/books')
+
+
 //use cors to allow cross origin resource sharing
 app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(bodyParser.json());
@@ -19,28 +21,8 @@ app.use(function(req, res, next) {
   });
 
 
-app.post('/book', function(req, res){
-
-    kafka.make_request('posts',req.body, function(err,results) {
-        console.log('in result');
-        console.log(results);
-        if (err){
-            console.log("Inside err");
-            res.json({
-                status:"error",
-                msg:"System Error, Try Again."
-            })
-        }else{
-            console.log("Inside else");
-                res.json({
-                    updatedList:results
-                });
-
-                res.end();
-            }
-        
-    });
-});
+app.use("/book", userRoute)
+  
 //start your server on port 3001
 app.listen(3001);
 console.log("Server Listening on port 3001");

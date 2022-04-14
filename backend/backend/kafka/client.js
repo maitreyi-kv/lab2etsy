@@ -6,6 +6,7 @@ function make_request(queue_name, msg_payload, callback) {
   console.log(msg_payload);
   rpc.makeRequest(queue_name, msg_payload, function (error, response) {
     if (error) {
+      console.log("make req", error);
       callback(error, null);
     } else {
       console.log("response", response);
