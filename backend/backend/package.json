@@ -21,10 +21,12 @@
     "express-sessions": "^1.0.6",
     "kafka-node": "^5.0.0",
     "kafkajs": "^1.15.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
   },
   "devDependencies": {
     "mongodb": "^4.5.0",
-    "mongoose": "^6.2.11"
+    "mongoose": "^6.2.11",
+    "supertest": "^6.2.2"
   }
 }

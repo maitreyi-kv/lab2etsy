@@ -1,23 +1,23 @@
-const mongooseConnection = require('./connection')
-//Create a SomeModel model just by requiring the module
-var SomeModel = require('./models/product')
+//Create a ProductModel model just by requiring the module
+const ProductModel = require('../../kafka-backend/mongodb/models/Product');
 
 
+const queryProducts = async () => {
+    const post = new ProductModel({
+        Name: "name",
+        Price: "243",
+        number: 34
+    })
+    return post.save();
+}
 
-// Use the SomeModel object (model) to find all SomeModel records
-SomeModel.find({}, (err, people) =>{
-    if (err) console.log("sadfdsf")
 
-    // send the list of all people in database with name of "John James" and age of 36
-    // Very possible this will be an array with just one Person object in it.
-    console.log("Response", people)
-});
+const findProducts = async () => {
+    const pro = await queryProducts();
+    console.log(pro)
+}
 
-// var book1 = new SomeModel({
-//     Name: String,
-//     Price: Number,
-//     number: Number
-//   });
+findProducts().then(r => console.log("res", r));
 
 // book1.save(function (err, book) {
 // if (err) return console.error(err);
