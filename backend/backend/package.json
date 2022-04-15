@@ -24,6 +24,7 @@
     "mocha": "^5.2.0"
   },
   "devDependencies": {
-    "mongodb": "^4.5.0"
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.11"
   }
 }
