@@ -1,10 +1,10 @@
+const { kafkaTopic } = require('../constants');
 var connection = require('./kafka/Connection');
 //topics files
 //var signin = require('./services/signin.js');
 var product = require('./services/product.js');
 
 function handleTopicRequest(topic_name, fname) {
-    //var topic_name = 'root_topic';
     var consumer = connection.getConsumer(topic_name);
     var producer = connection.getProducer();
     console.log('server is running ');
@@ -13,7 +13,7 @@ function handleTopicRequest(topic_name, fname) {
         console.log(JSON.stringify(message.value));
         var data = JSON.parse(message.value);
 
-        fname.handle_request(data.data, function (err, res) {
+        fname(data.data, function (err, res) {
             console.log('after handle' + res);
             var payloads = [
                 {
@@ -25,6 +25,7 @@ function handleTopicRequest(topic_name, fname) {
                     partition: 0
                 }
             ];
+
             producer.send(payloads, function (err, data) {
                 console.log(data);
             });
@@ -34,7 +35,7 @@ function handleTopicRequest(topic_name, fname) {
     });
 }
 
-// Add your TOPICs here
-//first argument is topic name
-//second argument is a function that will handle this topic request
-handleTopicRequest("posts", product)
+
+handleTopicRequest(kafkaTopic.addProducts, product.createProduct)
+handleTopicRequest(kafkaTopic.getProducts, product.getProduct)
+// handleTopicRequest("postsGet", product)

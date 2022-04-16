@@ -1,6 +1,6 @@
-const {createProducts} = require('../mongodb/connection');
+const {createProducts, getAllProducts} = require('../mongodb/connection');
 
-function handle_request(msg, callback) {
+function createProduct(msg, callback) {
 
     console.log("Inside book kafka backend", msg);
     createProducts(msg).then(r => {
@@ -8,6 +8,14 @@ function handle_request(msg, callback) {
     }).catch(err => console.log("Err======", err));
 };
 
-exports.handle_request = handle_request;
+function getProduct(_, callback) {
+
+    console.log("Inside book kafka backend", _);
+    getAllProducts().then(r => {
+        callback(null, r)
+    }).catch(err => console.log("Err======", err));
+};
+
+module.exports = { createProduct, getProduct };
 
 

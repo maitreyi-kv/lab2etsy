@@ -10,8 +10,12 @@ const createProducts = async (product) => {
   return pro.save();
 }
 
+const getAllProducts = async () => {
+  return ProductModel.find({})
+}
 
-module.exports = { createProducts }
+
+module.exports = { createProducts, getAllProducts }
 
 
 

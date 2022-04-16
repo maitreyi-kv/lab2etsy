@@ -1,25 +1,20 @@
-//import the require dependencies
-var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
-var cors = require('cors');
+// var session = require('express-session');
 var userRoute = require('./routes/books')
+// const {check, param, validationResult} = require('express-validator');
+// var cookieParser = require('cookie-parser');
+// var cors = require('cors');
+// app.set('view engine', 'ejs');
 
+// //use cors to allow cross origin resource sharing
+// app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
-//use cors to allow cross origin resource sharing
-app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
+var express = require('express')
+var cors = require('cors')
+var app = express()
+
+app.use(cors())
 app.use(bodyParser.json());
-
-//Allow Access Control
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
-  });
-
 
 app.use("/book", userRoute)
   
