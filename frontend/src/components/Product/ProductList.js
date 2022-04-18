@@ -31,6 +31,12 @@ let invoices = [
         Price: "$4,600",
         due: "01/27/1998",
     },
+    {
+        Name: "Wide Open Spaces",
+        number: 1,
+        Price: "$4,600",
+        due: "01/27/1998",
+    },
 ];
 
 export function getInvoices() {

@@ -7,6 +7,7 @@ export default function Product() {
   // let invoice = getInvoice(Number.parseInt(params.productId))
   // return <h2>Invoice: {invoice.number}</h2>;
 
+  console.log(params.productId);
   let {Name, Price} = getInvoice(Number.parseInt(params.productId));
   console.log("Invoice===", Number.parseInt(params.productId));
 
@@ -20,22 +21,7 @@ export default function Product() {
       {/*  />*/}
       {/*</CardActionArea>*/}
 
-      <Card sx={{minWidth: 275}}>
-        <CardMedia
-          component="img"
-          image="https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg"
-          alt={Name}
-          height="200"
-          title={Name}
-        />
-      </Card>
-      <Typography sx={{fontSize: 22}} variant="h6">
-        {Price}
-      </Typography>
-
-      <Typography variant="h6">
         {Name}
-      </Typography>
     </div>
 )
 }
