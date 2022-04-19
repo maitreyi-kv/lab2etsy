@@ -16,6 +16,14 @@ function getProduct(_, callback) {
     }).catch(err => console.log("Err======", err));
 };
 
+// function getSingleProduct(_, callback) {
+
+//     console.log("Inside book kafka backend", _);
+//     getAllProducts().then(r => {
+//         callback(null, r)
+//     }).catch(err => console.log("Err======", err));
+// };
+
 module.exports = { createProduct, getProduct };
 
 

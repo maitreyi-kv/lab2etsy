@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 // var session = require('express-session');
-var userRoute = require('./routes/books')
+var productsRoute = require('./routes/products');
+var productRoute = require('./routes/products');
 // const {check, param, validationResult} = require('express-validator');
 // var cookieParser = require('cookie-parser');
 // var cors = require('cors');
@@ -16,7 +17,8 @@ var app = express()
 app.use(cors())
 app.use(bodyParser.json());
 
-app.use("/book", userRoute)
+app.use("/products", productsRoute)
+app.use("/product", productRoute)
   
 //start your server on port 3001
 app.listen(3001);

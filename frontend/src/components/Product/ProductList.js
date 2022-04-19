@@ -39,22 +39,6 @@ let invoices = [
     },
 ];
 
-export function getInvoices() {
-    const config = {
-        method: 'get',
-        url: 'http://localhost:3001/book',
-        headers: {}
-    };
-
-    return axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
-
 export function getInvoice(number) {
     return invoices.filter(invoice => invoice.number === number)[0];
 }
