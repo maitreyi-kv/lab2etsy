@@ -13,14 +13,14 @@ export default function Product() {
     const fetchProduct = async () => {
       const config = {
         method: 'get',
-        url: `http://localhost:3001/products/${productID}`,
+        url: `http://localhost:3001/product/${productID}`,
         headers: {}
       };
 
       console.log("URL", config);
-      // const resp = await axios(config);
+      const resp = await axios(config);
       // setProduct(resp.data);
-      // return resp.data;
+      return resp.data;
     }
 
     fetchProduct().then(r => console.log("Success", r)).catch(err => console.log("Error in Products useEffect", err));

@@ -24,9 +24,9 @@ router.post('/', function(req, res){
     });
 });
 
-router.get('/', function(req, res){
-
-    kafka.make_request(kafkaTopic.getProducts, req.body,  function(err, results) {
+router.get('/:id', function(req, res){
+    console.log("In Add product", req.params.id)
+    kafka.make_request(kafkaTopic.getProduct, req.body,  function(err, results) {
         if (err){
             res.json({
                 status:"error",

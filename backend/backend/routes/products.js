@@ -25,7 +25,7 @@ router.post('/', function(req, res){
 });
 
 router.get('/', function(req, res){
-
+    console.log("Req===", req.body)
     kafka.make_request(kafkaTopic.getProducts, req.body,  function(err, results) {
         if (err){
             res.json({
