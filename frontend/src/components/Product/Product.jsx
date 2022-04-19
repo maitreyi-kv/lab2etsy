@@ -8,6 +8,7 @@ export default function Product() {
   let params = useParams();
   let productID = Number.parseInt(params.productId);
   const [product, setProduct] = useState([]);
+
   useEffect(() => {
 
     const fetchProduct = async () => {
@@ -19,28 +20,29 @@ export default function Product() {
 
       console.log("URL", config);
       const resp = await axios(config);
-      // setProduct(resp.data);
+      setProduct(resp.data);
       return resp.data;
     }
 
-    fetchProduct().then(r => console.log("Success", r)).catch(err => console.log("Error in Products useEffect", err));
+    fetchProduct().then(r => console.log("In Get Product by ID", r, product)).catch(err => console.log("Error in" +
+        " Products" +
+        " useEffect", err));
 
   }, [productID]);
-  console.log(params.productId);
-  let {Name, Price} = getInvoice(Number.parseInt(params.productId));
-  console.log("Invoice===", Number.parseInt(params.productId));
+  // console.log(params.productId);
+  // let {Name, Price} = getInvoice(Number.parseInt(params.productId));
+  // console.log("Invoice===", Number.parseInt(params.productId));
 
   return (
     <div>
-      {/*<Card sx={{minWidth: 275}}>*/}
-
-      {/*<CardActionArea>*/}
-      {/*  <CardMedia image='https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg'*/}
-      {/*             title={Name}*/}
-      {/*  />*/}
-      {/*</CardActionArea>*/}
-
-        {Name}
+        {product &&
+            <div>
+              <h6>{product.Price}</h6>
+              <h6>{product.Name}</h6>
+              <h6>{product._id
+              }</h6>
+            </div>
+        }
     </div>
 )
 }

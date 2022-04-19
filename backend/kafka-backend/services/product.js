@@ -1,4 +1,4 @@
-const {createProducts, getAllProducts} = require('../mongodb/connection');
+const {createProducts, getAllProducts, getProductByID} = require('../mongodb/connection');
 
 function createProduct(msg, callback) {
 
@@ -8,22 +8,23 @@ function createProduct(msg, callback) {
     }).catch(err => console.log("Err======", err));
 };
 
-function getProduct(_, callback) {
+function getProduct(msg, callback) {
 
-    console.log("Inside book kafka backend", _);
-    getAllProducts().then(r => {
+    console.log("Inside get Product kafka backend", msg);
+    getAllProducts(msg).then(r => {
         callback(null, r)
     }).catch(err => console.log("Err======", err));
 };
 
-// function getSingleProduct(_, callback) {
+function getSingleProduct(msg, callback) {
 
-//     console.log("Inside book kafka backend", _);
-//     getAllProducts().then(r => {
-//         callback(null, r)
-//     }).catch(err => console.log("Err======", err));
-// };
+    console.log("Inside get single product", msg);
+    getProductByID(msg).then(r => {
+        callback(null, r)
+    }).catch(err => console.log("Err======", err));
+    return {"single": "product"};
+};
 
-module.exports = { createProduct, getProduct };
+module.exports = { createProduct, getProduct, getSingleProduct };
 
 

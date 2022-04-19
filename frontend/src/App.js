@@ -1,11 +1,13 @@
 import Products from './components/Product/Products';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Product from './components/Product/Product';
+import {Navbar} from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+          <Navbar />
         <Routes>
           <Route path="/home" element={<Products/>} />
           <Route
