@@ -1,4 +1,5 @@
-const {createProducts, getAllProducts, getProductByID} = require('../mongodb/connection');
+const {createProducts, getAllProducts, getProductByID} = require('../mongodb/mongoQueries/products');
+
 
 function createProduct(msg, callback) {
 
