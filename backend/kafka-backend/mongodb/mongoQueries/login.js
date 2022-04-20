@@ -1,9 +1,12 @@
 const UserModel = require('../models/User');
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+
 
 const createUser = async (user) => {
-  console.log("In creating user")
-  return new UserModel(user).save();
+  console.log("In creating user", user);
+  new UserModel(user).save();
+  return "Registered";
 }
 
 // const getAllProducts = async (msg) => {
@@ -16,8 +19,13 @@ const createUser = async (user) => {
 //   return resp;
 // }
 
-const getUser = async (emailID) => {
-  return UserModel.findOne({Email: emailID});
+const getUser = async (user) => {
+  // bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+  //         if (err) return cb(err);
+  //         cb(null, isMatch);
+  //     });
+  let resp = UserModel.findOne({Email: user.Email});
+  return resp;
 }
 
-module.exports = { getUser, createUser }
+module.exports = { createUser, validateUser: getUser }

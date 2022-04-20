@@ -16,56 +16,75 @@ describe("Get products", function () {
         done();
       });
   });
+});
 
-  it("should return items empty array if no favs", function (done) {
-    // calling fav page api with right userid
+describe("Auth", function () {
+  it("should register new user", function (done) {
     server
-      .post("/favorite")
+      .post("/auth/register")
       .send({
-        "UserID": "100"
+        "Email": "abssc@gmail.com",
+        "Password": "pass"
       })
       .expect("Content-type", /json/)
       .expect(200) // THis is HTTP response
       .end(function (err, res) {
         res.status.should.equal(200);
-        res.body.should.deepEqual([])
+        res.body.should.deepEqual({message: "Created User"})
         done();
       });
   });
-});
 
-describe("Get store details", function () {
-  it("should return store details", function (done) {
+  it("should not register an already present user", function (done) {
     server
-      .post("/storeDetails")
+      .post("/auth/register")
       .send({
-        "StoreID": "10"
+        "Email": "abssc@gmail.com",
+        "Password": "pass"
+      })
+      .expect("Content-type", /json/)
+      .expect(200) // THis is HTTP response
+      .end(function (err, res) {
+        res.status.should.equal(200);
+        res.body.should.deepEqual({message: "Created User"})
+        done();
+      });
+  });
+
+  it("should login user with right creds", function (done) {
+    server
+      .post("/auth/login")
+      .send({
+        "Email": "abssc@gmail.com",
+        "Password": "pass"
       })
       .expect("Content-type", /json/)
       .expect(200) // THis is HTTP response
       .end(function (err, res) {
         res.status.should.equal(200);
         res.body.should.deepEqual({
-            StoreID: 10,
-            UserID: 19,
-            StoreName: 'vank',
-            ts: '2022-03-23T11:42:34.000Z',
-            Name: 'vank',
-            Email: 'vank@gmail.com',
-            PhoneNumber: null,
-            Password: 'vank',
-            City: null,
-            BirthdayDate: null,
-            BirthdayDay: null,
-            About: null,
-            Address: 'vank',
-            Country: null,
-            ProfilePicture: null
-          }
-        )
+          "message": "LoggedIn"
+        })
         done();
       });
   });
+
+  it("should not login user with wrong creds", function (done) {
+    server
+      .post("/auth/login")
+      .send({
+        "Email": "abssc@gmail.com",
+        "Password": "password"
+      })
+      .expect("Content-type", /json/)
+      .expect(200) // THis is HTTP response
+      .end(function (err, res) {
+        res.status.should.equal(200);
+        res.body.should.deepEqual( { message: 'Invalid Creds' })
+        done();
+      });
+  });
+
 });
 
 describe("Get category", function () {
