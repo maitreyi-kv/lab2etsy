@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom'
-import SearchIcon from '@mui/icons-material/Search';
-import {IconButton, Typography} from '@mui/material';
+import {Typography} from '@mui/material';
 import './Footer.css';
 import axios from 'axios';
+import {currencyChange} from '../../actions';
 
 
 export const Footer = () => {
+  const dispatch = useDispatch();
   const [country, setCountry] = useState("");
-  const [currency, setCurrency] = useState("");
+  const currency = useSelector(state => state.currency)
+  const [currentCurrency, setCurrency] = useState(currency);
 
   useEffect(() => {
 
@@ -22,8 +23,11 @@ export const Footer = () => {
     });
   }, [])
 
-  const onChangeText = event => {
+  const onChangeCurrency = event => {
+    let currency = event.target.value;
+    console.log("Event ", event.target.value)
     setCurrency(event.target.value)
+    dispatch(currencyChange(currency))
   };
 
   return (
@@ -31,16 +35,19 @@ export const Footer = () => {
       <Typography variant="h6" component="h6">
         <ul>
 
-         <li>Country: {country}</li>
-        <li>
-          <select name="currency" id="currecny" value={country}>
-            <option value="USA">USD</option>
-            <option value="India">INR</option>
-            <option value="Russia">DOWN</option>
-            <option value="China">YEN</option>
-            <option value="Ukraine">KNO</option>
-          </select>
-        </li>
+          <li>Country: {country}</li>
+          <li>
+            <select name="currency" id="currecny" value={currentCurrency} onChange={onChangeCurrency}>
+              <option value="USD">USD</option>
+              <option value="INR">INR</option>
+              <option value="DOWN">DOWN</option>
+              <option value="YEN">YEN</option>
+              <option value="KNO">KNO</option>
+            </select>
+          </li>
+          {/*<li>*/}
+          {/*  Currency: {currency}*/}
+          {/*</li>*/}
         </ul>
       </Typography>
       <hr style={{borderTop: "gray"}}/>

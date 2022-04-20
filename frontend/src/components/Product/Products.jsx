@@ -4,6 +4,7 @@ import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image'
+import {useDispatch, useSelector} from 'react-redux';
 // import useStyles from './styles';
 
 export default function Products() {
@@ -14,6 +15,7 @@ export default function Products() {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
+    const currency = useSelector(state => state.currency)
 
     useEffect(() => {
 
@@ -54,7 +56,7 @@ export default function Products() {
                         <div className='bg-image hover-overlay' style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
                             <img src='https://mdbootstrap.com/img/new/fluid/city/055.webp' className='img-fluid'
                                  alt="alt text" height="200px"/>
-                            <div> Price {product.Price} </div>
+                            <div> Price {currency} {product.Price} </div>
                             <div> Name {product.Name}</div>
                         </div>
                     </Link>
