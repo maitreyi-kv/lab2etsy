@@ -5,6 +5,7 @@ import {Navbar} from './components/Navbar/Navbar';
 import imageUpload from './components/ImageUpload';
 import ImageUpload from './components/ImageUpload';
 import {Footer} from './components/Footer/Footer';
+import Register from './components/Login/Register';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Products/>}/>
           <Route path="/image" element={<ImageUpload/>}/>
+          <Route path="/register" element={<Register/>}/>
           <Route
             path="*"
             element={

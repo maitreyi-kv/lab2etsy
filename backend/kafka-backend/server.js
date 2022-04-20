@@ -3,6 +3,8 @@ var connection = require('./kafka/Connection');
 //topics files
 //var signin = require('./services/signin.js');
 var product = require('./services/product.js');
+var login = require('./services/login');
+var register = require('./services/register');
 
 function handleTopicRequest(topic_name, fname) {
     var consumer = connection.getConsumer(topic_name);
@@ -39,4 +41,5 @@ function handleTopicRequest(topic_name, fname) {
 handleTopicRequest(kafkaTopic.addProducts, product.createProduct)
 handleTopicRequest(kafkaTopic.getProducts, product.getProduct)
 handleTopicRequest(kafkaTopic.getProduct, product.getSingleProduct)
+handleTopicRequest(kafkaTopic.register, register.registerUser)
 // handleTopicRequest("postsGet", product)
