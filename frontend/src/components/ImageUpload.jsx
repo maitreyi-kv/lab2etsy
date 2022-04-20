@@ -4,44 +4,41 @@ import axios from 'axios';
 
 export default function ImageUpload() {
     const [selectedFile, setSelectedFile] = useState("");
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // // searchParams.get("text")
-    // console.log("Search parmas", searchParams.get("search"))
-    // const [products, setProducts] = useState([]);
-    // const [loading, setLoading] = useState(false);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [postsPerPage, setPostsPerPage] = useState(10);
-    //
-    // useEffect(() => {
-    //
-    //     const fetchProducts = async () => {
-    //         setLoading(true);
-    //         console.log("Search etxt", searchParams)
-    //         const config = {
-    //             method: 'get',
-    //             url: 'http://localhost:3001/products',
-    //             headers: {}
-    //         };
-    //
-    //         let searchText = searchParams.get("search");
-    //         if(searchText) {
-    //             config.url += `?search=${searchText}`;
-    //         }
-    //
-    //         console.log("URL", config.url);
-    //         const resp = await axios(config);
-    //         console.log("Products===", resp.data);
-    //         setProducts(resp.data);
-    //         setLoading(false);
-    //         return resp.data;
-    //     }
-    //
-    //     fetchProducts().then(r => console.log("Success", r)).catch(err => console.log("Error in Products useEffect", err));
-    // }, [searchParams]);
+    const [urlUpload, setUrlUpload] = useState("");
 
-    const uplaodImage = (event) => {
+    const uplaodImage = async (event) => {
         event.preventDefault();
-        console.log("Submiutted Image", selectedFile)
+        console.log("Submiutted Image", selectedFile);
+
+        const getImageURL = async () => {
+
+            const resp = await axios.post('http://localhost:3001/s3image', {fileType: selectedFile.type, fileName: selectedFile.name});
+            console.log("URL ===", resp.data.url);
+            setUrlUpload(resp.data.url);
+            return resp.data.url;
+        }
+
+        const uploadImageFromURL = async (ImageURL) => {
+            await fetch(ImageURL, {
+                method: "PUT",
+                headers: {
+                    "Content-type": selectedFile.type
+                },
+                body: selectedFile
+            });
+
+            console.log("Uplaoded image?", ImageURL.split('?')[0]);
+            return ImageURL.split('?')[0];
+        }
+
+        let response = await uploadImageFromURL(await getImageURL());
+        console.log("Response after image upload===", response)
+        // getImageURL()
+        //     .then(r => console.log("Res", r))
+        //     .then(r => {
+        //         uploadImageFromURL().then()
+        //     })
+        //     .catch(err => console.log("Error in getting url image", err));
     }
 
     return (

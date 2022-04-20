@@ -36,8 +36,8 @@ export const Navbar = () => {
         <div>
             <Typography variant="h6" component="h6">
                 <ul>
-                    <li>Etsy</li>
-                    {/*<li onClick={resetText}><Link to="/home">Home</Link></li>*/}
+                    {/*<li>Etsy</li>*/}
+                    <li onClick={resetText}><Link to="/home">Etsy</Link></li>
                     <li className="search-bar-li">
                         <input type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
                     </li>

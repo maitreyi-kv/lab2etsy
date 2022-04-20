@@ -2,6 +2,8 @@ import Products from './components/Product/Products';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Product from './components/Product/Product';
 import {Navbar} from './components/Navbar/Navbar';
+import imageUpload from './components/ImageUpload';
+import ImageUpload from './components/ImageUpload';
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
           <Navbar />
         <Routes>
           <Route path="/home" element={<Products/>} />
+          <Route path="/image" element={<ImageUpload/>} />
           <Route
             path="*"
             element={

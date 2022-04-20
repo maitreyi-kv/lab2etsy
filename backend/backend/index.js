@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 // var session = require('express-session');
 var productsRoute = require('./routes/products');
 var productRoute = require('./routes/product');
+var s3Route = require('./routes/s3');
 // const {check, param, validationResult} = require('express-validator');
 // var cookieParser = require('cookie-parser');
 // var cors = require('cors');
@@ -18,8 +19,10 @@ app.use(cors())
 app.use(bodyParser.json());
 
 app.use("/products", productsRoute)
-app.use("/product/", productRoute)
-  
+//changed / from this
+app.use("/product", productRoute)
+app.use("/s3image", s3Route)
+
 //start your server on port 3001
 app.listen(3001);
 console.log("Server Listening on port 3001");
