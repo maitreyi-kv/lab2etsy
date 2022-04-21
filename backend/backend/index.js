@@ -4,6 +4,8 @@ var productsRoute = require('./routes/products');
 var productRoute = require('./routes/product');
 var s3Route = require('./routes/s3');
 var authRoute = require('./routes/auth');
+const passport = require('passport');
+
 // const {check, param, validationResult} = require('express-validator');
 // var cookieParser = require('cookie-parser');
 // var cors = require('cors');
@@ -18,6 +20,9 @@ var app = express()
 
 app.use(cors())
 app.use(bodyParser.json());
+app.use(passport.initialize());
+
+require('./routes/passportCode');
 
 app.use("/products", productsRoute)
 //changed / from this

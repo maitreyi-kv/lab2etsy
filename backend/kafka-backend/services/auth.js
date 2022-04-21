@@ -1,5 +1,7 @@
 const {createUser, getUser} = require('../mongodb/mongoQueries/login');
 const {hashPass, comparePass} = require('../mongodb/utils');
+const jwt = require('jsonwebtoken');
+const {SECRET_JWT_KEY} = require('../constants');
 
 function registerUser(msg, callback) {
   console.log("In register user");
@@ -22,10 +24,12 @@ function loginUser(msg, callback) {
       const validPassword = await comparePass(msg.Password, userExists.Password)
       if (!validPassword) callback(null, {message: "Invalid Creds"})
       else {
-        const token = jwt.sign({message: "LoggedIn"}, "TOP_SECRET", )
-        callback(null, {message: "LoggedIn"});
+        const payloadObj = {
+          name: userExists.Email,
+        };
+        const token = jwt.sign(payloadObj, SECRET_JWT_KEY, { expiresIn: "1d"});
+        callback(null, { message: "Logged In Successfully", token: "Bearer "+token });
       }
-
     }
     return callback(null, {message: "User doesnt exist"})
   }).catch(err => console.log("Err in login user", err));

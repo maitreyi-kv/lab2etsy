@@ -2,12 +2,15 @@ var kafka = require('../kafka/client');
 // Importing the module
 const express=require("express");
 const { kafkaTopic } = require('../../constants');
+const passport = require('passport');
 
 // Creating express Router
 const router=express.Router()
+require('./passportCode');
 
-router.post('/', function(req, res){
-
+// passport.authenticate('local', {session: false} ),
+router.post('/', passport.authenticate('jwt', {session: false} ), function(req, res){
+    console.log("In post product")
     kafka.make_request(kafkaTopic.addProduct , req.body, function(err,results) {
         if (err){
             res.json({

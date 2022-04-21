@@ -1,6 +1,7 @@
 const kafkaTopic = {
     "getProducts": "getProducts",
     "addProducts": "addProducts",
+    "addProduct": "addProduct",
     "getProduct": "getProduct",
     "deleteProduct": "deleteProduct",
     "login": "login",
