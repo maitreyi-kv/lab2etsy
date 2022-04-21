@@ -25,7 +25,8 @@ function loginUser(msg, callback) {
       if (!validPassword) callback(null, {message: "Invalid Creds"})
       else {
         const payloadObj = {
-          name: userExists.Email,
+          Email: userExists.Email,
+          id: userExists._id
         };
         const token = jwt.sign(payloadObj, SECRET_JWT_KEY, { expiresIn: "1d"});
         callback(null, { message: "Logged In Successfully", token: "Bearer "+token });
@@ -35,6 +36,15 @@ function loginUser(msg, callback) {
   }).catch(err => console.log("Err in login user", err));
 }
 
-module.exports = {registerUser, loginUser};
+function checkJWT(msg, callback) {
+  console.log("Inside jwtUser validate user backend", msg);
+  getUser(msg).then(async userExists => {
+    if (userExists) callback(null, userExists);
+    callback(null, {});
+  }).catch(err => console.log("ERR", err));
+
+}
+
+module.exports = {registerUser, loginUser, checkJWT};
 
 
