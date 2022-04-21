@@ -46,7 +46,7 @@ describe("Auth", function () {
       .expect(200) // THis is HTTP response
       .end(function (err, res) {
         res.status.should.equal(200);
-        res.body.should.deepEqual({message: "Created User"})
+        res.body.should.deepEqual({ message: 'User already exists' })
         done();
       });
   });

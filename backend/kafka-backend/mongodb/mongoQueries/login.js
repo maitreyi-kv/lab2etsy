@@ -28,4 +28,4 @@ const getUser = async (user) => {
   return resp;
 }
 
-module.exports = { createUser, validateUser: getUser }
+module.exports = { createUser, getUser }
