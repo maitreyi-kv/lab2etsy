@@ -12,7 +12,7 @@ function registerUser(msg, callback) {
       if(userCreation)
           callback(null, {message: "Created User"})
     } else {
-      callback(null, {message: "User already exists"})
+      callback(null, {message: "Email already registered"})
     }
   }).catch(err => console.log("Error while fetching user register", err))
 }
