@@ -9,7 +9,7 @@ function createProduct(msg, callback) {
     }).catch(err => console.log("Err======", err));
 };
 
-function getProduct(msg, callback) {
+function getProducts(msg, callback) {
 
     console.log("Inside get Product kafka backend", msg);
     getAllProducts(msg).then(r => {
@@ -26,6 +26,6 @@ function getSingleProduct(msg, callback) {
     return {"single": "product"};
 };
 
-module.exports = { createProduct, getProduct, getSingleProduct };
+module.exports = { createProduct, getProduct: getProducts, getSingleProduct };
 
 

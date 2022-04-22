@@ -7,9 +7,10 @@ const createProducts = async (product) => {
 }
 
 const getAllProducts = async (msg) => {
-  let {search} = msg
+  let {search, _id} = msg
   let searchText = {}
-  if(search) searchText = {Name: {'$regex': search}}
+  if(search) searchText.Name = {'$regex': search}
+  if(_id) searchText.CreatedBy = { '$ne': _id }
   console.log("Search text", searchText);
   let resp = ProductModel.find(searchText);
   console.log("Resp search", resp);

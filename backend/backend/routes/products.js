@@ -1,14 +1,15 @@
-var kafka = require('../kafka/client');
-// Importing the module
+const kafka = require('../kafka/client');
 const express=require("express");
 const { kafkaTopic } = require('../../constants');
+const decodedJWT = require('./utils');
 
-// Creating express Router
 const router=express.Router()
 
 router.get('/', function(req, res){
-    console.log("Get products ===", req.body, req.query)
-    kafka.make_request(kafkaTopic.getProducts, { ...req.body, ...req.query },  function(err, results) {
+    const jwtTokenDecoded = decodedJWT(req.get('authorization'));
+    let payloadObj = {}
+    if(jwtTokenDecoded) payloadObj._id = jwtTokenDecoded.id
+    kafka.make_request(kafkaTopic.getProducts, { ...req.body, ...req.query},  function(err, results) {
         if (err){
             res.json({
                 status:"error",

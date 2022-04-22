@@ -1,13 +1,13 @@
 import {useParams} from "react-router-dom";
-import {getInvoice} from './ProductList';
-import {Card, CardActionArea, CardContent, CardMedia, Typography} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {useSelector} from 'react-redux';
 
 export default function Product() {
   let params = useParams();
   let productID = Number.parseInt(params.productId);
   const [product, setProduct] = useState([]);
+  const login = useSelector(state => state.login);
 
   useEffect(() => {
 
@@ -15,7 +15,7 @@ export default function Product() {
       const config = {
         method: 'get',
         url: `http://localhost:3001/product/${productID}`,
-        headers: {}
+        headers: login ? { Authorization: login } : {}
       };
 
       console.log("URL", config);
