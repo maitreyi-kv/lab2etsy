@@ -3,10 +3,12 @@ const currencyReducer = (state = [], action) => {
   const {payload, type} = action
   switch (type) {
     case 'CURRENCY':
-      console.log("change currency", payload)
+      console.log("change currency", payload);
+      localStorage.setItem("currency", payload);
       return payload
     default:
-      return 'USD'
+      return localStorage.getItem("currency");
+
   }
 }
 
