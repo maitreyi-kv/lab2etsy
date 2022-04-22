@@ -26,6 +26,6 @@ function getSingleProduct(msg, callback) {
     return {"single": "product"};
 };
 
-module.exports = { createProduct, getProduct: getProducts, getSingleProduct };
+module.exports = { createProduct, getProducts, getSingleProduct };
 
 

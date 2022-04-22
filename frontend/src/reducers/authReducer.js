@@ -1,4 +1,4 @@
-const loginReducer = (state = [], action) => {
+const loginReducer = (state = null, action) => {
   console.log("Login Reducer", action.type);
   const {payload, type} = action
   switch (type) {
@@ -9,7 +9,8 @@ const loginReducer = (state = [], action) => {
       console.log("Logout reducer")
       return null
     default:
-      return null
+      console.log("default reducer", localStorage.getItem("jwt"))
+      return localStorage.getItem("jwt");
   }
 }
 

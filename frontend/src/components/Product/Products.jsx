@@ -1,10 +1,7 @@
-import {getInvoices} from './ProductList';
 import {Link, useSearchParams} from "react-router-dom";
-import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import Image from 'react-bootstrap/Image'
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 // import useStyles from './styles';
 
 export default function Products() {
@@ -15,7 +12,8 @@ export default function Products() {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
-    const currency = useSelector(state => state.currency)
+    const currency = useSelector(state => state.currency);
+    const login = useSelector(state => state.login);
 
     useEffect(() => {
 
@@ -25,7 +23,7 @@ export default function Products() {
             const config = {
                 method: 'get',
                 url: 'http://localhost:3001/products',
-                headers: {}
+                headers: login ? { Authorization: login } : {}
             };
 
             let searchText = searchParams.get("search");
