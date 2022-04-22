@@ -3,13 +3,15 @@ import axios from 'axios';
 import {URL} from '../../constants';
 import {Form} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const login = useSelector(state => state.login);
   let navigate = useNavigate();
 
   const onChangeUsername = event => {
@@ -57,6 +59,7 @@ const Register = () => {
 
   return (
     <div>
+      {login ? <Navigate to="/home" /> : ""}
       <h1>Register</h1>
       {message && <h5>{message}</h5>}
       <Form noValidate style={{width: '60%', marginLeft: '100px'}}>

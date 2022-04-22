@@ -7,11 +7,9 @@ import './Navbar.css';
 
 
 export const Navbar = () => {
-    // const isLogged = useSelector(state => state.authentication.auth)
-    // const username = useSelector(state => state.authentication.user)
-    // useSelector(state => state.authentication.canRegister);
     const [searchText, setSearchText] = useState("");
-    // const dispatch = useDispatch()
+    const login = useSelector(state => state.login);
+
     let navigate = useNavigate();
 
     const onChangeText = event => {
@@ -41,8 +39,9 @@ export const Navbar = () => {
                     <li className="search-bar-li">
                         <input type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
                     </li>
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/register">Register</Link></li>
+                    { !login ? <li><Link to="/login">Login</Link></li> : '' }
+                    { !login ? <li><Link to="/register">Register</Link></li> : ''}
+                    { login ? <li><Link to="/logout">Logout</Link></li> : ''}
                     <li style={{ paddingTop: '10px', width: "5%" }}>
                         <IconButton aria-label="Favorite" onClick={() => search()}>
                             <SearchIcon style={{ fill:"grey"} }/>

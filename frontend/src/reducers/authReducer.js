@@ -5,8 +5,11 @@ const loginReducer = (state = [], action) => {
     case 'LOGIN':
       console.log("Login reducer", payload)
       return payload
+    case 'LOGOUT':
+      console.log("Logout reducer")
+      return null
     default:
-      return {}
+      return null
   }
 }
 
