@@ -24,28 +24,35 @@ const Register = () => {
     setEmail(event.target.value)
   };
 
-  const registerHandler = async (event) => {
+  const registerHandler = (event) => {
     event.preventDefault();
-    let config = {
-      method: 'post',
-      url: `${URL}:3001/auth/register`,
-      headers: {},
-      data: {Name: username, Email: email, Password: password}
-    };
 
-    await axios(config)
-      .then(response => {
-        console.log("Rregitsering!", response.data)
-        setMessage(response.data.message);
-      })
-      .catch(error => {
-        console.log("Error", error);
-        return error
-      });
+    const tryRegisterUser = async () => {
+      let config = {
+        method: 'post',
+        url: `${URL}/auth/register`,
+        headers: {},
+        data: {Name: username, Email: email, Password: password}
+      };
 
-    if (message === "Created User") {
-      navigate("/login");
+      return axios(config)
+        .then(response => {
+          console.log("Rregitsering!", response.data)
+          setMessage(response.data.message);
+          return response.data.message;
+        })
+        .catch(error => {
+          console.log("Error", error);
+          return error
+        });
     }
+
+    tryRegisterUser().then(res => {
+      if(res==="Created User") {
+          navigate("/login");
+      }
+    }).catch(err => console.log("Error while creating user", err));
+
   }
 
   return (

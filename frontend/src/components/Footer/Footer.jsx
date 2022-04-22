@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Typography} from '@mui/material';
 import './Footer.css';
 import axios from 'axios';
-import {currencyChange} from '../../actions';
+import {currencyAction} from '../../actions';
 
 
 export const Footer = () => {
@@ -27,7 +27,7 @@ export const Footer = () => {
     let currency = event.target.value;
     console.log("Event ", event.target.value)
     setCurrency(event.target.value)
-    dispatch(currencyChange(currency))
+    dispatch(currencyAction(currency))
   };
 
   return (

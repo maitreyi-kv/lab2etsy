@@ -41,6 +41,8 @@ export const Navbar = () => {
                     <li className="search-bar-li">
                         <input type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
                     </li>
+                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/register">Register</Link></li>
                     <li style={{ paddingTop: '10px', width: "5%" }}>
                         <IconButton aria-label="Favorite" onClick={() => search()}>
                             <SearchIcon style={{ fill:"grey"} }/>

@@ -6,6 +6,7 @@ import imageUpload from './components/ImageUpload';
 import ImageUpload from './components/ImageUpload';
 import {Footer} from './components/Footer/Footer';
 import Register from './components/Login/Register';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<Products/>}/>
           <Route path="/image" element={<ImageUpload/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route
             path="*"
             element={
