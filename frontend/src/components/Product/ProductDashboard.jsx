@@ -33,7 +33,7 @@ function ProductDashboard({product}) {
         return resp;
       }
 
-      toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav"+ err));
+      toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav" + err));
     }
   }
 
@@ -44,14 +44,16 @@ function ProductDashboard({product}) {
         to={`/product/${product._id}`}
         key={product._id}
       >
-      <img src='https://etsy-clone-bucket.s3.amazonaws.com/step4.png' className='img-fluid'
-           alt="alt text" height="200px"/>
-      <div> Price {currency} {product.Price} </div>
-      <div> Name {product.Name}</div>
-      <div> Name {product._id}</div>
-        { fav ? <div>Fav</div> : <div>Not fav</div> }
+        <img src='https://etsy-clone-bucket.s3.amazonaws.com/step4.png' className='img-fluid'
+             alt="alt text" height="200px"/>
+        <div> Price {currency} {product.Price} </div>
+        <div> Name {product.Name}</div>
+        <div> Name {product._id}</div>
+        <div> Shopname {product.ShopName}</div>
+        {fav ? <div>Fav</div> : <div>Not fav</div>}
       </Link>
-      {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> : <FavoriteBorderIcon />}
+      {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
+        <FavoriteBorderIcon/>}
     </div>
   )
 }

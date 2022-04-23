@@ -8,7 +8,9 @@ import {Footer} from './components/Footer/Footer';
 import Register from './components/Login/Register';
 import Login from './components/Login/Login';
 import Logout from './components/Login/Logout';
+import ShopCreate from './components/Shop/ShopCreate';
 import Favorites from './components/Favorites';
+import ShopHome from './components/Shop/ShopHome';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/logout" element={<Logout/>}/>
+          <Route path="/shop" element={<ShopCreate/>}/>
+          <Route path="/shophome" element={<ShopHome/>}/>
           <Route
             path="*"
             element={

@@ -16,12 +16,6 @@ export const Navbar = () => {
         setSearchText(event.target.value)
     };
 
-    // function logoutFunc() {
-    //     localStorage.removeItem("address")
-    //     // dispatch(signOut());
-    //     navigate("/login")
-    // }
-
     const search = () => {
         navigate("/home?search="+searchText)
     }
@@ -39,20 +33,20 @@ export const Navbar = () => {
                     <li className="search-bar-li">
                         <input type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
                     </li>
-                    { !login ? <li><Link to="/login">Login</Link></li> : '' }
-                    { !login ? <li><Link to="/register">Register</Link></li> : ''}
-                    { login ? <li><Link to="/favorites">Favorites</Link></li> : '' }
-                    { login ? <li><Link to="/logout">Logout</Link></li> : ''}
-
                     <li style={{ paddingTop: '10px', width: "5%" }}>
                         <IconButton aria-label="Favorite" onClick={() => search()}>
                             <SearchIcon style={{ fill:"grey"} }/>
                         </IconButton>
                     </li>
+                    { !login ? <li><Link to="/login">Login</Link></li> : '' }
+                    { !login ? <li><Link to="/register">Register</Link></li> : ''}
+                    { login ? <li><Link to="/favorites">Favorites</Link></li> : '' }
+                    { login ? <li className="right"><Link to="/shop">Shop</Link></li> : '' }
+                    { login ? <li><Link to="/logout">Logout</Link></li> : ''}
 
                     {/*{ isLogged ? <li className="mimic" onClick={logoutFunc}>Logout</li> : <li className="right"><Link to="/login">Login</Link></li> }*/}
                     {/*{ isLogged ? <li className="right"><Link to="/profile">Profile</Link></li> : '' }*/}
-                    {/*{ isLogged ? <li className="right"><Link to="/store">Shop</Link></li> : '' }*/}
+
                     {/*{ isLogged ? <li className="right"><Link to="/favorite">Fav</Link></li> : '' }*/}
                     {/*{ (isLogged !== true) ? <li className="right"><Link to="/register">Register</Link></li> : '' }*/}
                     {/*<li onClick={resetText}><Link to="/addToCart">*/}

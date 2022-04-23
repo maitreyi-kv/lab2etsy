@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var productsRoute = require('./routes/products');
 var productRoute = require('./routes/product');
 var favoriteRoute = require('./routes/favorite');
+var shopRoute = require('./routes/shop');
 var s3Route = require('./routes/s3');
 var authRoute = require('./routes/auth');
 const passport = require('passport');
@@ -31,6 +32,7 @@ app.use("/product", productRoute)
 app.use("/s3image", s3Route)
 app.use("/auth", authRoute)
 app.use("/favorite", favoriteRoute)
+app.use("/shop", shopRoute)
 
 //start your server on port 3001
 app.listen(3001);

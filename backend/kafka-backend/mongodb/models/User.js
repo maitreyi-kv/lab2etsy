@@ -6,7 +6,8 @@ const User = new Schema({
   Email: String,
   Password: String,
   Name: String,
-  Favorites: Array
+  Favorites: Array,
+  ShopName: String
 });
 
 module.exports = mongoose.model('users', User );

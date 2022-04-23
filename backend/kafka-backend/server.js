@@ -3,6 +3,7 @@ var connection = require('./kafka/Connection');
 var product = require('./services/product.js');
 var register = require('./services/auth');
 var favorite = require('./services/favorite');
+var shop = require('./services/shop');
 
 require('./mongodb/connection');
 
@@ -47,4 +48,8 @@ handleTopicRequest(kafkaTopic.login, register.loginUser)
 handleTopicRequest(kafkaTopic.jwtUser, register.checkJWT)
 handleTopicRequest(kafkaTopic.addFavorite, favorite.favoriteAdd)
 handleTopicRequest(kafkaTopic.getFavoriteProducts, favorite.getFavoriteProducts)
+handleTopicRequest(kafkaTopic.getShop, shop.getShop)
+handleTopicRequest(kafkaTopic.getShopAvailability, shop.getShopAvailability)
+handleTopicRequest(kafkaTopic.createShop, shop.createShop)
+handleTopicRequest(kafkaTopic.getShopDetails, shop.getShopDetails)
 // handleTopicRequest("postsGet", product)
