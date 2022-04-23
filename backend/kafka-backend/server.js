@@ -2,6 +2,7 @@ const { kafkaTopic } = require('../constants');
 var connection = require('./kafka/Connection');
 var product = require('./services/product.js');
 var register = require('./services/auth');
+var favorite = require('./services/favorite');
 
 require('./mongodb/connection');
 
@@ -44,4 +45,5 @@ handleTopicRequest(kafkaTopic.getProduct, product.getSingleProduct)
 handleTopicRequest(kafkaTopic.register, register.registerUser)
 handleTopicRequest(kafkaTopic.login, register.loginUser)
 handleTopicRequest(kafkaTopic.jwtUser, register.checkJWT)
+handleTopicRequest(kafkaTopic.addFavorite, favorite.favoriteAdd)
 // handleTopicRequest("postsGet", product)

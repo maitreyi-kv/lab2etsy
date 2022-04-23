@@ -11,7 +11,6 @@ const Logout = () => {
 
   useEffect(() => {
     return () => {
-      localStorage.removeItem("jwt");
       dispatch(logoutAction());
       console.log("Token after del", login);
       navigate('/home');

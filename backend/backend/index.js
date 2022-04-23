@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 // var session = require('express-session');
 var productsRoute = require('./routes/products');
 var productRoute = require('./routes/product');
+var favoriteRoute = require('./routes/favorite');
 var s3Route = require('./routes/s3');
 var authRoute = require('./routes/auth');
 const passport = require('passport');
@@ -29,6 +30,7 @@ app.use("/products", productsRoute)
 app.use("/product", productRoute)
 app.use("/s3image", s3Route)
 app.use("/auth", authRoute)
+app.use("/favorite", favoriteRoute)
 
 //start your server on port 3001
 app.listen(3001);

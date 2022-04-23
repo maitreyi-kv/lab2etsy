@@ -3,6 +3,7 @@ var kafka = require('../kafka/client');
 const express=require("express");
 const { kafkaTopic } = require('../../constants');
 const {checkAuth} = require('./passportCode');
+const decodedJWT = require('./utils');
 // const passport = require('passport');
 
 // Creating express Router
@@ -26,8 +27,12 @@ router.post('/', checkAuth, function(req, res){
 });
 
 router.get('/:id', function(req, res){
-    console.log("In Add product", req.params.id)
-    kafka.make_request(kafkaTopic.getProduct, req.params.id,  function(err, results) {
+    console.log("In Add product", req.params.id, req.get('authorization'))
+    const jwtTokenDecoded = decodedJWT(req.get('authorization'));
+    let payloadObj = { id: req.params.id }
+    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID;
+    console.log("JWT in ID", payloadObj);
+    kafka.make_request(kafkaTopic.getProduct, payloadObj,  function(err, results) {
         if (err){
             res.json({
                 status:"error",

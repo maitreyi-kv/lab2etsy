@@ -6,7 +6,8 @@ const kafkaTopic = {
     "deleteProduct": "deleteProduct",
     "login": "login",
     "register": "register",
-    "jwtUser": "jwtUser"
+    "jwtUser": "jwtUser",
+    "addFavorite": "addFavorite",
 }
 
 

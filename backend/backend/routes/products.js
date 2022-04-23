@@ -7,9 +7,9 @@ const router=express.Router()
 
 router.get('/', function(req, res){
     const jwtTokenDecoded = decodedJWT(req.get('authorization'));
-    console.log("jwtttt", jwtTokenDecoded, req.get('authorization'));
     let payloadObj = { ...req.body, ...req.query}
-    if(jwtTokenDecoded) payloadObj._id = jwtTokenDecoded.id
+    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID
+    console.log("jwtttt", jwtTokenDecoded, req.get('authorization'));
     kafka.make_request(kafkaTopic.getProducts, payloadObj,  function(err, results) {
         if (err){
             res.json({

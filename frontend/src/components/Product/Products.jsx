@@ -48,14 +48,15 @@ export default function Products() {
                 return (
                     <Link
                         style={{padding: "1rem 0"}}
-                        to={`/product/${product.number}`}
-                        key={product.number}
+                        to={`/product/${product._id}`}
+                        key={product._id}
                     >
                         <div className='bg-image hover-overlay' style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
                             <img src='https://mdbootstrap.com/img/new/fluid/city/055.webp' className='img-fluid'
                                  alt="alt text" height="200px"/>
                             <div> Price {currency} {product.Price} </div>
                             <div> Name {product.Name}</div>
+                            <div> Name {product._id}</div>
                         </div>
                     </Link>
                 )

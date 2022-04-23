@@ -59,7 +59,6 @@ const Login = () => {
     tryLoginUser().then(res => {
       const {message} = res.data
       if (message === "Logged In Successfully") {
-        localStorage.setItem("jwt", res.data.token);
         dispatch(loginAction(res.data.token));
         navigate('/home');
       } else {
