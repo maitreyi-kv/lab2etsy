@@ -12,13 +12,14 @@ const favToggle = async (req) => {
         Favorites: productID,
       },
     },{safe: true, upsert: true});
+  } else {
+    console.log("In aciton del", action, UserID, productID)
+    return UserModel.updateOne({ _id: UserID}, {
+      $pull: {
+        Favorites: productID,
+      },
+    });
   }
-
-  return UserModel.findByIdAndDelete(UserID, {
-    $pullAll: {
-      Favorites: productID,
-    },
-  });
 }
 
 const getFavProducts = async (req) => {
