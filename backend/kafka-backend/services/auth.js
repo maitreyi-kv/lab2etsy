@@ -26,7 +26,7 @@ function loginUser(msg, callback) {
       else {
         const payloadObj = {
           Email: userExists.Email,
-          id: userExists._id
+          UserID: userExists._id
         };
         const token = jwt.sign(payloadObj, SECRET_JWT_KEY, { expiresIn: "1d"});
         callback(null, { message: "Logged In Successfully", token: "Bearer "+token });

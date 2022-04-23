@@ -3,10 +3,12 @@ const loginReducer = (state = null, action) => {
   const {payload, type} = action
   switch (type) {
     case 'LOGIN':
-      console.log("Login reducer", payload)
+      console.log("Login reducer", payload);
+      localStorage.setItem("jwt", payload);
       return payload
     case 'LOGOUT':
-      console.log("Logout reducer")
+      console.log("Logout reducer");
+      localStorage.removeItem("jwt");
       return null
     default:
       console.log("default reducer", localStorage.getItem("jwt"))
