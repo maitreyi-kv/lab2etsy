@@ -19,11 +19,13 @@ const getAllProducts = async (msg) => {
   // let isFavorite = false
   if(UserID) {
     let favorite = await UserModel.findById(msg.UserID).select("Favorites");
-    let { Favorites } = favorite;
-    for(let idx in products) {
-      let product = products[idx];
-      console.log("Product", product._id);
-      products[idx].isFavorite = !!Favorites.includes(product._id);
+    if(favorite?.Favorites) {
+      let {Favorites} = favorite;
+      for (let idx in products) {
+        let product = products[idx];
+        console.log("Product", product._id);
+        products[idx].isFavorite = !!Favorites.includes(product._id);
+      }
     }
   }
   return products;
@@ -46,4 +48,11 @@ const getProductByID = async (req) => {
   return { ...product, isFavorite: isFavorite };
 }
 
-module.exports = { createProducts, getAllProducts, getProductByID }
+const _getProductByID = async (id) => {
+  let pro = await ProductModel.findById(id).lean();
+  pro.isFavorite = true;
+  console.log("proo", pro, id);
+  return pro;
+}
+
+module.exports = { createProducts, getAllProducts, getProductByID, _getProductByID }

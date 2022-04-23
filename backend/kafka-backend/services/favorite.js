@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {favToggle} = require('../mongodb/mongoQueries/favorite');
+const {favToggle, getFavProducts} = require('../mongodb/mongoQueries/favorite');
 
 function favoriteAdd(msg, callback) {
   console.log("Inside fav add ", msg);
@@ -7,9 +7,16 @@ function favoriteAdd(msg, callback) {
     if (userExists) callback(null, userExists);
     callback(null, {});
   }).catch(err => console.log("ERR", err));
-
 }
 
-module.exports = {favoriteAdd};
+function getFavoriteProducts(msg, callback) {
+  console.log("Inside get fav products ", msg);
+  getFavProducts(msg).then(async userExists => {
+    if (userExists) callback(null, userExists);
+    callback(null, {});
+  }).catch(err => console.log("ERR", err));
+}
+
+module.exports = {favoriteAdd, getFavoriteProducts};
 
 

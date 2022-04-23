@@ -41,7 +41,9 @@ export const Navbar = () => {
                     </li>
                     { !login ? <li><Link to="/login">Login</Link></li> : '' }
                     { !login ? <li><Link to="/register">Register</Link></li> : ''}
+                    { login ? <li><Link to="/favorites">Favorites</Link></li> : '' }
                     { login ? <li><Link to="/logout">Logout</Link></li> : ''}
+
                     <li style={{ paddingTop: '10px', width: "5%" }}>
                         <IconButton aria-label="Favorite" onClick={() => search()}>
                             <SearchIcon style={{ fill:"grey"} }/>

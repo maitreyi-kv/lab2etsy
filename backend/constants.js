@@ -8,6 +8,7 @@ const kafkaTopic = {
     "register": "register",
     "jwtUser": "jwtUser",
     "addFavorite": "addFavorite",
+    "getFavoriteProducts": "getFavoriteProducts"
 }
 
 

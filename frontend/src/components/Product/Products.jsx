@@ -6,7 +6,6 @@ import ProductDashboard from './ProductDashboard';
 
 export default function Products() {
     const [searchParams, setSearchParams] = useSearchParams();
-    // searchParams.get("text")
     console.log("Search parmas", searchParams.get("search"))
     const [products, setProducts] = useState([]);
     const login = useSelector(state => state.login);

@@ -8,6 +8,7 @@ import {Footer} from './components/Footer/Footer';
 import Register from './components/Login/Register';
 import Login from './components/Login/Login';
 import Logout from './components/Login/Logout';
+import Favorites from './components/Favorites';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/image" element={<ImageUpload/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/logout" element={<Logout/>}/>
           <Route
             path="*"
