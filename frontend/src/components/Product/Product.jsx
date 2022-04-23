@@ -62,7 +62,7 @@ export default function Product() {
               <h6>{product.Price}</h6>
               <h6>{product.Name}</h6>
               <h6>{product._id}</h6>
-              {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> : ''}
+              {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> : <FavoriteBorderIcon />}
             </div>
         }
     </div>

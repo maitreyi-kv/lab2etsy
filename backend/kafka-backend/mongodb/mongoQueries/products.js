@@ -14,9 +14,19 @@ const getAllProducts = async (msg) => {
   if(search) searchText.Name = {'$regex': search}
   if(UserID) searchText.CreatedBy = { '$ne': UserID }
   console.log("Search text", msg, searchText);
-  let resp = ProductModel.find(searchText);
-  console.log("Resp search", resp);
-  return resp;
+  let products = await ProductModel.find(searchText).lean();
+  console.log("Resp search", products);
+  // let isFavorite = false
+  if(UserID) {
+    let favorite = await UserModel.findById(msg.UserID).select("Favorites");
+    let { Favorites } = favorite;
+    for(let idx in products) {
+      let product = products[idx];
+      console.log("Product", product._id);
+      products[idx].isFavorite = !!Favorites.includes(product._id);
+    }
+  }
+  return products;
 }
 
 const getProductByID = async (req) => {
