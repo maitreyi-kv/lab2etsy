@@ -29,12 +29,7 @@ function AddCartProduct({product}) {
     }
   }, [quantity])
 
-  const updateQuan = (e) => {
-    setQuantity(e.target.value)
-  }
-
-  const descriptionSave = (e) => {
-    setCheckboxDescription(e.target.value);
+  useEffect(() => {
     let addCartLocalStorage = JSON.parse(localStorage.getItem("cartItems"));
     if(addCartLocalStorage) {
       let updated = addCartLocalStorage.filter(localProduct => localProduct._id !== product._id);
@@ -43,6 +38,14 @@ function AddCartProduct({product}) {
       localStorage.setItem('cartItems', JSON.stringify(updated));
       console.log("Updated", updated)
     }
+  }, [checkboxDescription])
+
+  const updateQuan = (e) => {
+    setQuantity(e.target.value)
+  }
+
+  const descriptionSave = (e) => {
+    setCheckboxDescription(e.target.value);
   }
 
   return (
