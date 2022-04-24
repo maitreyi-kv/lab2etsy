@@ -10,6 +10,7 @@ const User = new Schema({
   ShopName: String,
   Orders: [{
     Order: Array,
+    Date: {type: Date, default: Date.now},
     TotalPrice: Number,
     OrderID: String
   }]

@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios';
 import PurchasedOrders from './PurchasedOrders';
 import {URL} from '../../constants';
+import Table from 'react-bootstrap/Table';
 
 function Purchase() {
   const [orders, setOrders] = useState(null);
@@ -36,12 +37,30 @@ function Purchase() {
         <div>
           <div style={{display: "flex", flexWrap: "wrap"}}>
             {
-              orders.map((order) => (
+              orders.map((order, idx) => (
                 // console.log("Order", order)
                 <div>
-                  <h4>Order ID{order.OrderID}</h4>
-                  <h4>Total Price {order.TotalPrice}</h4>
-                <PurchasedOrders order={{order:order.Order}} />
+                  <h6>Order Number {idx+1}</h6>
+                  <h6>Order ID{order.OrderID}</h6>
+                  <h6>Total Price {order.TotalPrice}</h6>
+                  <h6>Date {order.Date}</h6>
+                  <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                      <td>Index</td>
+                      <td>Photo</td>
+                      <td>Name</td>
+                      <td>ShopName</td>
+                      <td>Quantity</td>
+                      <td>Price</td>
+                      <td>Gift</td>
+                      <td>Checkbox</td>
+                    </tr>
+                    </thead>
+                  <tbody>
+                    <PurchasedOrders order={{order:order.Order}} />
+                  </tbody>
+                  </Table>
                 </div>
               ))
             }

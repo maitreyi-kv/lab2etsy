@@ -6,23 +6,25 @@ function PurchasedOrders({order}) {
   const currency = useSelector(state => state.currency);
 
   return (
-    <div>
+    <tr>
       {
-        //TODO: Make a order ID or combo of 2 keys - UserID + idx and use it here
         order.order.map((product, idx) => (
-          <div>
-            <h6>ShopName {product.ShopName}</h6>
-            <h6>Name {product.Name}</h6>
-            <h6>Quantity {product.QuantityChoosen}</h6>
-            <h6>Price {product.Price}</h6>
-            <h6>Description {product.Description}</h6>
-            <h6>Gift Description {product.CheckboxDesc}</h6>
-            <h6>Checkbox {product.Checkbox}</h6>
-            <img src={product.ImageURL}/>
-          </div>
+          <>
+            <td>{idx+1}</td>
+            <td>
+              <img height="100px" src={product.ImageURL}/>
+            </td>
+            <td>{product.Name}</td>
+            <td>{product.ShopName}</td>
+            <td>{product.QuantityChoosen}</td>
+            <td>{product.Price}</td>
+            { product.Checkbox? <td>Gift wrap</td> : <td></td>}
+            { product.CheckboxDesc ? <td>{product.CheckboxDesc}</td> : <td></td> }
+
+          </>
         ))
       }
-    </div>
+    </tr>
   )
 }
 
