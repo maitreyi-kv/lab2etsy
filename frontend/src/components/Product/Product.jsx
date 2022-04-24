@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
@@ -11,6 +11,7 @@ export default function Product() {
   const [product, setProduct] = useState([]);
   const [fav, setFav] = useState(null);
   const login = useSelector(state => state.login);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Login", login)
@@ -18,7 +19,7 @@ export default function Product() {
       const config = {
         method: 'get',
         url: `http://localhost:3001/product/${productID}`,
-        headers: login ? { Authorization: login } : {}
+        headers: login ? {Authorization: login} : {}
       };
 
       console.log("URL", config);
@@ -30,8 +31,8 @@ export default function Product() {
     }
 
     fetchProduct().then(r => console.log("In Get Product by ID", r, product)).catch(err => console.log("Error in" +
-        " Products" +
-        " useEffect", err));
+      " Products" +
+      " useEffect", err));
 
   }, [productID]);
 
@@ -51,22 +52,33 @@ export default function Product() {
         return resp;
       }
 
-      toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav"+ err));
+      toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav" + err));
     }
+  }
+
+  const goToShop = () => {
+    let sName = product.ShopName;
+    navigate(`/shophome?name=${sName}`);
   }
 
   return (
     <div>
-        {product &&
-            <div>
-              <img src={product.ImageURL} className='img-fluid'
-                   alt="alt text" height="200px"/>
-              <h6>{product.Price}</h6>
-              <h6>{product.Name}</h6>
-              <h6>{product._id}</h6>
-              {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> : <FavoriteBorderIcon />}
-            </div>
-        }
+      {product &&
+        <div>
+          <div>
+            <img src={product.ImageURL} className='img-fluid'
+                 alt="alt text" height="200px"/>
+          </div>
+          <div>
+            <button onClick={goToShop}>{product.ShopName}</button>
+            <h6>{product.Price}</h6>
+            <h6>{product.Name}</h6>
+            <h6>{product._id}</h6>
+            {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
+              <FavoriteBorderIcon/>}
+          </div>
+        </div>
+      }
     </div>
-)
+  )
 }

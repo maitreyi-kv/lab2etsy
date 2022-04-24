@@ -37,8 +37,12 @@ function ShopHome() {
 
   return (
     <div>
+      <h2>ShopName: {storeName}</h2>
+
       {products &&
         <div>
+          {/*TODO: Add image and upload*/}
+          {edit? <button onClick={() => console.log("EDIT")}>Add Image</button> : ''}
           { edit? <ModalAddProduct ShopName={storeName}/> : '' }
           <div style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
             {products.map((product) => {
