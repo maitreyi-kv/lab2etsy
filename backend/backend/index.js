@@ -6,6 +6,7 @@ var favoriteRoute = require('./routes/favorite');
 var shopRoute = require('./routes/shop');
 var s3Route = require('./routes/s3');
 var authRoute = require('./routes/auth');
+var orderRoute = require('./routes/order');
 const passport = require('passport');
 
 // const {check, param, validationResult} = require('express-validator');
@@ -33,6 +34,7 @@ app.use("/s3image", s3Route)
 app.use("/auth", authRoute)
 app.use("/favorite", favoriteRoute)
 app.use("/shop", shopRoute)
+app.use("/order", orderRoute)
 
 //start your server on port 3001
 app.listen(3001);

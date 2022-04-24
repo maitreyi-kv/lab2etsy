@@ -6,6 +6,7 @@ var favorite = require('./services/favorite');
 var shop = require('./services/shop');
 
 require('./mongodb/connection');
+const order = require('./services/order');
 
 function handleTopicRequest(topic_name, fname) {
     var consumer = connection.getConsumer(topic_name);
@@ -53,4 +54,6 @@ handleTopicRequest(kafkaTopic.getShopAvailability, shop.getShopAvailability)
 handleTopicRequest(kafkaTopic.createShop, shop.createShop)
 handleTopicRequest(kafkaTopic.getShopDetails, shop.getShopDetails)
 handleTopicRequest(kafkaTopic.getCategory, shop.getCategory)
+handleTopicRequest(kafkaTopic.postOrder, order.createOrder)
+handleTopicRequest(kafkaTopic.getOrder, order.getOrder)
 // handleTopicRequest("postsGet", product)

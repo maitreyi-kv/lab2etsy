@@ -12,6 +12,7 @@ import ShopCreate from './components/Shop/ShopCreate';
 import Favorites from './components/Favorites';
 import ShopHome from './components/Shop/ShopHome';
 import AddCart from './components/AddCart/AddCart';
+import Purchase from './components/Purchase/Purchase';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/shop" element={<ShopCreate/>}/>
           <Route path="/shophome" element={<ShopHome/>}/>
           <Route path="/addcart" element={<AddCart/>}/>
+          <Route path="/purchase" element={<Purchase/>}/>
           <Route
             path="*"
             element={
