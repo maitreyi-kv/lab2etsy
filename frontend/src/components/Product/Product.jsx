@@ -10,6 +10,7 @@ export default function Product() {
   let productID = params.productId;
   const [product, setProduct] = useState([]);
   const [fav, setFav] = useState(null);
+  const [quan, setQuan] = useState(null);
   const login = useSelector(state => state.login);
   const navigate = useNavigate();
 
@@ -61,6 +62,16 @@ export default function Product() {
     navigate(`/shophome?name=${sName}`);
   }
 
+  const addToCart = () => {
+    let current = [];
+    //TODO: Add validations here for min max - use this variable QuantityAvailable
+    if ("cartItems" in localStorage) {
+      current = JSON.parse(localStorage.getItem("cartItems"));
+    }
+    current.push({...product, QuantityChoosen: Number.parseInt(quan)})
+    localStorage.setItem("cartItems", JSON.stringify(current))
+  }
+
   return (
     <div>
       {product &&
@@ -76,6 +87,9 @@ export default function Product() {
             <h6>{product._id}</h6>
             {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
               <FavoriteBorderIcon/>}
+            <br/>
+            <input type="number" min="0" onChange={(e) => setQuan(e.target.value)}/>
+            <button type="submit" onClick={addToCart}>Add To Cart</button>
           </div>
         </div>
       }

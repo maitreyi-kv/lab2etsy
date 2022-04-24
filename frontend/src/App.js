@@ -11,6 +11,7 @@ import Logout from './components/Login/Logout';
 import ShopCreate from './components/Shop/ShopCreate';
 import Favorites from './components/Favorites';
 import ShopHome from './components/Shop/ShopHome';
+import AddCart from './components/AddCart/AddCart';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/logout" element={<Logout/>}/>
           <Route path="/shop" element={<ShopCreate/>}/>
           <Route path="/shophome" element={<ShopHome/>}/>
+          <Route path="/addcart" element={<AddCart/>}/>
           <Route
             path="*"
             element={

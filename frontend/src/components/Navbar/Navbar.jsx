@@ -42,6 +42,7 @@ export const Navbar = () => {
                     { !login ? <li><Link to="/register">Register</Link></li> : ''}
                     { login ? <li><Link to="/favorites">Favorites</Link></li> : '' }
                     { login ? <li className="right"><Link to="/shop">Shop</Link></li> : '' }
+                    { login ? <li className="right"><Link to="/addcart">Cart</Link></li> : '' }
                     { login ? <li><Link to="/logout">Logout</Link></li> : ''}
 
                     {/*{ isLogged ? <li className="mimic" onClick={logoutFunc}>Logout</li> : <li className="right"><Link to="/login">Login</Link></li> }*/}
