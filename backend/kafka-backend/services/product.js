@@ -7,7 +7,7 @@ function createProduct(msg, callback) {
     createProducts(msg).then(r => {
         callback(null, r)
     }).catch(err => console.log("Err======", err));
-};
+}
 
 function getProducts(msg, callback) {
 
@@ -15,7 +15,7 @@ function getProducts(msg, callback) {
     getAllProducts(msg).then(r => {
         callback(null, r)
     }).catch(err => console.log("Err======", err));
-};
+}
 
 function getSingleProduct(msg, callback) {
 
@@ -24,7 +24,7 @@ function getSingleProduct(msg, callback) {
         callback(null, r)
     }).catch(err => console.log("Err======", err));
     return {"single": "product"};
-};
+}
 
 module.exports = { createProduct, getProducts, getSingleProduct };
 

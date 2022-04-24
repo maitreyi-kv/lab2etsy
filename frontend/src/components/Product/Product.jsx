@@ -59,7 +59,7 @@ export default function Product() {
     <div>
         {product &&
             <div>
-              <img src='https://etsy-clone-bucket.s3.amazonaws.com/step4.png' className='img-fluid'
+              <img src={product.ImageURL} className='img-fluid'
                    alt="alt text" height="200px"/>
               <h6>{product.Price}</h6>
               <h6>{product.Name}</h6>

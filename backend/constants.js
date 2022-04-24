@@ -12,7 +12,8 @@ const kafkaTopic = {
     "getShop": "getShop",
     "getShopAvailability": "getShopAvailability",
     "createShop": "createShop",
-    "getShopDetails": "getShopDetails"
+    "getShopDetails": "getShopDetails",
+    "getCategory": "getCategory"
 }
 
 

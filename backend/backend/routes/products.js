@@ -46,5 +46,25 @@ router.get('/favorite', checkAuth, function(req, res){
     });
 });
 
+router.get('/category', checkAuth, function(req, res){
+    const jwtTokenDecoded = decodedJWT(req.get('authorization'));
+    let payloadObj = { ...req.body, ...req.query}
+    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID
+    console.log("Catergory jwt", jwtTokenDecoded, req.get('authorization'));
+    kafka.make_request(kafkaTopic.getCategory, payloadObj,  function(err, results) {
+        if (err){
+            res.json({
+                status:"error",
+                msg:"System Error, Try Again."
+            })
+        }else{
+            console.log("Inside else");
+            res.json(results);
+            res.end();
+        }
+
+    });
+});
+
 
 module.exports=router

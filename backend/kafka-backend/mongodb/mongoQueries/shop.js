@@ -3,6 +3,7 @@ const UserModel = require('../models/User');
 const mongoose = require("mongoose");
 const {_getProductByID} = require('./products');
 const ProductModel = require('../models/Product');
+const CategoryModel = require('../models/Category');
 
 const getShopQuery = async (req) => {
   const {UserID} = req;
@@ -40,4 +41,13 @@ const getShopDetailsQuery = async (req) => {
   return { products: productsInShop, canEdit: ShopUserID === UserID };
 }
 
-module.exports = {getShopQuery, getShopAvailabilityQuery, createStoreQuery, getShopDetailsQuery}
+const getCategoryQuery = async () => {
+  let cat = await CategoryModel.find({}).select("category").lean();
+  cat_array = []
+  for(let idx in cat) {
+    cat_array.push(cat[idx].category);
+  }
+  return cat_array;
+}
+
+module.exports = {getShopQuery, getShopAvailabilityQuery, createStoreQuery, getShopDetailsQuery, getCategoryQuery}

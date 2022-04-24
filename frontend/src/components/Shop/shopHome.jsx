@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import ProductDashboard from '../Product/ProductDashboard';
 import {Link, useSearchParams} from 'react-router-dom';
+import ModalAddProduct from './ModalAddProduct';
 
 function ShopHome() {
   const [products, setProducts] = useState(null);
@@ -38,6 +39,7 @@ function ShopHome() {
     <div>
       {products &&
         <div>
+          { edit? <ModalAddProduct ShopName={storeName}/> : '' }
           <div style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
             {products.map((product) => {
               return (
@@ -46,7 +48,7 @@ function ShopHome() {
                   to={`/product/${product._id}`}
                   key={product._id}
                 >
-                  <img src='https://etsy-clone-bucket.s3.amazonaws.com/step4.png' className='img-fluid'
+                  <img src={product.ImageURL||'https://etsy-clone-bucket.s3.amazonaws.com/step4.png'} className='img-fluid'
                        alt="alt text" height="200px"/>
                   <div> Price {currency} {product.Price} </div>
                   <div> Name {product.Name}</div>

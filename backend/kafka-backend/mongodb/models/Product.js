@@ -6,7 +6,13 @@ const Schema = mongoose.Schema;
 const Products = new Schema({
   Name: String,
   Price: String,
-  CreatedBy: String
+  CreatedBy: String,
+  Description: String,
+  ImageURL: String,
+  QuantityAvailable: Number,
+  QuantitySold: 0,
+  Category: String,
+  ShopName: String
 });
 
 module.exports = mongoose.model('products', Products );

@@ -1,4 +1,4 @@
-const {getShopQuery, getShopAvailabilityQuery, createStoreQuery, getShopDetailsQuery} = require('../mongodb/mongoQueries/shop');
+const {getShopQuery, getShopAvailabilityQuery, createStoreQuery, getShopDetailsQuery, getCategoryQuery} = require('../mongodb/mongoQueries/shop');
 
 function getShop(msg, callback) {
   getShopQuery(msg).then(r => {
@@ -23,4 +23,11 @@ function getShopDetails(msg, callback) {
     callback(null, r)
   }).catch(err => console.log("Err======", err));
 }
-module.exports = { getShop, getShopAvailability, createShop, getShopDetails };
+
+function getCategory(msg, callback) {
+  getCategoryQuery(msg).then(r => {
+    callback(null, r)
+  }).catch(err => console.log("Err======", err));
+}
+
+module.exports = { getShop, getShopAvailability, createShop, getShopDetails, getCategory };

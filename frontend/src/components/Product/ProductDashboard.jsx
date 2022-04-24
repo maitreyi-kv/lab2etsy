@@ -44,7 +44,7 @@ function ProductDashboard({product}) {
         to={`/product/${product._id}`}
         key={product._id}
       >
-        <img src='https://etsy-clone-bucket.s3.amazonaws.com/step4.png' className='img-fluid'
+        <img src={product.ImageURL} className='img-fluid'
              alt="alt text" height="200px"/>
         <div> Price {currency} {product.Price} </div>
         <div> Name {product.Name}</div>
