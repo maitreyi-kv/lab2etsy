@@ -29,6 +29,10 @@ node server.js
 
 ![image](https://user-images.githubusercontent.com/98665151/164988584-33314d13-3c41-487c-ab0d-51b889dc29fd.png)
 
+# Add a .env file for aws 
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+
 
 # On VM
 
