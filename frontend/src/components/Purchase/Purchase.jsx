@@ -5,6 +5,7 @@ import PurchasedOrders from './PurchasedOrders';
 import {URL} from '../../constants';
 import Table from 'react-bootstrap/Table';
 
+
 function Purchase() {
   const [orders, setOrders] = useState(null);
   const login = useSelector(state => state.login);
@@ -35,35 +36,44 @@ function Purchase() {
     <div>
       {orders &&
         <div>
-          <div style={{display: "flex", flexWrap: "wrap"}}>
-            {
-              orders.map((order, idx) => (
-                // console.log("Order", order)
-                <div>
-                  <h6>Order Number {idx+1}</h6>
-                  <h6>Order ID{order.OrderID}</h6>
-                  <h6>Total Price {order.TotalPrice}</h6>
-                  <h6>Date {order.Date}</h6>
-                  <Table striped bordered hover>
-                    <thead>
-                    <tr>
-                      <td>Index</td>
-                      <td>Photo</td>
-                      <td>Name</td>
-                      <td>ShopName</td>
-                      <td>Quantity</td>
-                      <td>Price</td>
-                      <td>Gift</td>
-                      <td>Checkbox</td>
-                    </tr>
-                    </thead>
-                  <tbody>
-                    <PurchasedOrders order={{order:order.Order}} />
-                  </tbody>
-                  </Table>
-                </div>
-              ))
-            }
+          <div style={{display: "flex", flexWrap: "wrap", width: "80%"}}>
+            <Table striped bordered hover>
+              <thead>
+              <tr>
+                <td>Idx</td>
+                <td> Orders</td>
+              </tr>
+              </thead>
+              <tbody>
+              {
+                orders.map((order, idx) => (
+                  // console.log("Order", order)
+                  <tr>
+                    <td>{idx + 1}</td>
+                    <td><h6>Total Price {order.TotalPrice}</h6>
+                      <h6>Date {order.Date}</h6>
+                      <Table striped bordered hover>
+                        <thead>
+                        <tr>
+                          <td>Index</td>
+                          <td>Photo</td>
+                          <td>Name</td>
+                          <td>ShopName</td>
+                          <td>Quantity</td>
+                          <td>Price</td>
+                          <td>Gift</td>
+                          <td>Checkbox</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <PurchasedOrders order={{order: order.Order}}/>
+                        </tbody>
+                      </Table></td>
+                  </tr>
+                ))
+              }
+              </tbody>
+            </Table>
           </div>
         </div>
       }
