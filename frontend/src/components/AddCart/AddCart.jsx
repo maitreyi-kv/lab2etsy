@@ -5,23 +5,24 @@ import axios from 'axios';
 import {URL} from '../../constants';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function AddCart() {
   const [cart, setCart] = useState(null);
-  const [price, setPrice] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(null);
   const login = useSelector(state => state.login);
   const navigate = useNavigate();
 
   const updatePrice = products => {
     let price = 0;
-    if (products.length > 0) {
+    if (products) {
       products.map(p => {
         console.log("price  calc", parseFloat(p.Price) * parseInt(p.QuantityChoosen))
         price = price + ( parseFloat(p.Price) * parseInt(p.QuantityChoosen) )
       })
       console.log("Price===", price);
     }
-    setPrice(price);
+    setTotalPrice(price);
   }
 
   useEffect(() => {
@@ -46,7 +47,10 @@ function AddCart() {
 
     const postOrder = async () => {
       const resp = await axios.post(`${URL}/order`, {
-        Order: addCartLocalStorage
+        Order: addCartLocalStorage,
+        TotalPrice: totalPrice,
+        NumberOfItems: 10,
+        OrderID: uuidv4()
       }, {
         headers: login ? {Authorization: login} : {}
       });
@@ -73,8 +77,8 @@ function AddCart() {
             )
           })}
         </div>
-          {price ? <h4>Price = {price}</h4> : "No products in cart" }
-          { price? <button onClick={goToPurchase}>Checkout</button> : " Add items"}
+          {totalPrice ? <h4>Price = {totalPrice}</h4> : "No products in cart" }
+          { totalPrice? <button onClick={goToPurchase}>Checkout</button> : " Add items"}
         </div>
       }
     </div>

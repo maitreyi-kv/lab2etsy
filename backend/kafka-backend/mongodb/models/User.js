@@ -8,7 +8,12 @@ const User = new Schema({
   Name: String,
   Favorites: Array,
   ShopName: String,
-  Orders: Array
+  Orders: [{
+    Order: Array,
+    TotalPrice: Number,
+    NumberOfItems: Number,
+    OrderID: String
+  }]
 });
 
 module.exports = mongoose.model('users', User );
