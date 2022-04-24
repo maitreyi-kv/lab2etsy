@@ -13,7 +13,7 @@ const getAllProducts = async (msg) => {
   let {search, UserID} = msg
   let searchText = {}
   if(search) searchText.Name = {'$regex': search}
-  if(UserID) searchText.CreatedBy = { '$ne': UserID }
+  if(UserID) searchText.UserID = { '$ne': UserID }
   console.log("Search text", msg, searchText);
   let products = await ProductModel.find(searchText).lean();
   console.log("Resp search", products);
