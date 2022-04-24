@@ -10,7 +10,7 @@ import Login from './components/Login/Login';
 import Logout from './components/Login/Logout';
 import ShopCreate from './components/Shop/ShopCreate';
 import Favorites from './components/Favorites';
-import ShopHome from './components/Shop/ShopHome';
+import ShopHomes from './components/Shop/ShopHomes';
 import AddCart from './components/AddCart/AddCart';
 import Purchase from './components/Purchase/Purchase';
 
@@ -27,7 +27,7 @@ function App() {
           <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/logout" element={<Logout/>}/>
           <Route path="/shop" element={<ShopCreate/>}/>
-          <Route path="/shophome" element={<ShopHome/>}/>
+          <Route path="/shophome" element={<ShopHomes/>}/>
           <Route path="/addcart" element={<AddCart/>}/>
           <Route path="/purchase" element={<Purchase/>}/>
           <Route

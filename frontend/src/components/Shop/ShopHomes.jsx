@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import {useSelector} from 'react-redux';
-import ProductDashboard from '../Product/ProductDashboard';
 import {Link, useSearchParams} from 'react-router-dom';
 import ModalAddProduct from './ModalAddProduct';
 
-function ShopHome() {
+function ShopHomes() {
   const [products, setProducts] = useState(null);
   const [edit, setEdit] = useState(false);
   const login = useSelector(state => state.login);
@@ -41,7 +40,7 @@ function ShopHome() {
 
       {products &&
         <div>
-          {/*TODO: Add image and upload*/}
+          {/*TODO: Add image and upload to s3*/}
           {edit? <button onClick={() => console.log("EDIT")}>Add Image</button> : ''}
           { edit? <ModalAddProduct ShopName={storeName}/> : '' }
           <div style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
@@ -69,4 +68,4 @@ function ShopHome() {
   )
 }
 
-export default ShopHome
+export default ShopHomes
