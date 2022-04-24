@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {Link, useSearchParams} from 'react-router-dom';
 import ModalAddProduct from './ModalAddProduct';
 
-function ShopHomes() {
+function ShopHome() {
   const [products, setProducts] = useState(null);
   const [edit, setEdit] = useState(false);
   const login = useSelector(state => state.login);
@@ -68,4 +68,4 @@ function ShopHomes() {
   )
 }
 
-export default ShopHomes
+export default ShopHome
