@@ -12,7 +12,11 @@ const router=express.Router()
 // passport.authenticate('local', {session: false} ),
 router.post('/', checkAuth, function(req, res){
     console.log("In post product")
-    kafka.make_request(kafkaTopic.addProduct , req.body, function(err,results) {
+    const jwtTokenDecoded = decodedJWT(req.get('authorization'));
+    let payloadObj = { ...req.body, ...req.query}
+    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID
+    console.log("In post product", payloadObj)
+    kafka.make_request(kafkaTopic.addProduct , payloadObj, function(err,results) {
         if (err){
             res.json({
                 status:"error",

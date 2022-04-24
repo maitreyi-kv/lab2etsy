@@ -1,10 +1,9 @@
-const {createProducts, getAllProducts, getProductByID} = require('../mongodb/mongoQueries/products');
+const {createProductsQuery, getAllProducts, getProductByID} = require('../mongodb/mongoQueries/products');
 
 
 function createProduct(msg, callback) {
-
     console.log("Inside book kafka backend", msg);
-    createProducts(msg).then(r => {
+    createProductsQuery(msg).then(r => {
         callback(null, r)
     }).catch(err => console.log("Err======", err));
 }

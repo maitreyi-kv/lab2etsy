@@ -3,7 +3,8 @@ const UserModel = require('../models/User');
 
 const mongoose = require("mongoose");
 
-const createProducts = async (product) => {
+const createProductsQuery = async (product) => {
+  console.log("Before writing...", product);
   const pro = new ProductModel(product);
   return pro.save();
 }
@@ -55,4 +56,4 @@ const _getProductByID = async (id) => {
   return pro;
 }
 
-module.exports = { createProducts, getAllProducts, getProductByID, _getProductByID }
+module.exports = { createProductsQuery, getAllProducts, getProductByID, _getProductByID }

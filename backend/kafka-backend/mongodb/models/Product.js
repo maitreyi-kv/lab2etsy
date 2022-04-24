@@ -12,7 +12,8 @@ const Products = new Schema({
   QuantityAvailable: Number,
   QuantitySold: 0,
   Category: String,
-  ShopName: String
+  ShopName: String,
+  UserID: String
 });
 
 module.exports = mongoose.model('products', Products );
