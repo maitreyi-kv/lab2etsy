@@ -74,7 +74,7 @@ docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic 
 
 
 Nodemon
-npm install -g nodemon
+npm install pm2 -g
 
 Whitelist ip for ec2 instance 
 https://www.mongodb.com/docs/atlas/security/ip-access-list/
