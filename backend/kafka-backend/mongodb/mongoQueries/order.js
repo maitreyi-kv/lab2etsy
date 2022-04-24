@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 
 const createOrderQuery = async (req) => {
   console.log("Craete order", req);
-  const {UserID, Order, TotalPrice, OrderID, NumberOfItems} = req;
+  const {UserID, Order, TotalPrice, OrderID} = req;
 
-  console.log("In order", UserID, Order, TotalPrice, OrderID, NumberOfItems)
+  console.log("In order", UserID, Order, TotalPrice, OrderID)
   return UserModel.findByIdAndUpdate(UserID, {
     $push: {
-      Orders: { Order: Order,  TotalPrice, OrderID, NumberOfItems  },
+      Orders: { Order: Order,  TotalPrice, OrderID},
     },
   },{safe: true, upsert: true});
 

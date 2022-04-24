@@ -11,7 +11,6 @@ function PurchasedOrders({order}) {
         //TODO: Make a order ID or combo of 2 keys - UserID + idx and use it here
         order.order.map((product, idx) => (
           <div>
-            <h6>Order IDX {idx}</h6>
             <h6>ShopName {product.ShopName}</h6>
             <h6>Name {product.Name}</h6>
             <h6>Quantity {product.QuantityChoosen}</h6>

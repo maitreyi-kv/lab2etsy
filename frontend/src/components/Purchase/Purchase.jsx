@@ -37,7 +37,12 @@ function Purchase() {
           <div style={{display: "flex", flexWrap: "wrap"}}>
             {
               orders.map((order) => (
-                <PurchasedOrders order={{order:order}} />
+                // console.log("Order", order)
+                <div>
+                  <h4>Order ID{order.OrderID}</h4>
+                  <h4>Total Price {order.TotalPrice}</h4>
+                <PurchasedOrders order={{order:order.Order}} />
+                </div>
               ))
             }
           </div>

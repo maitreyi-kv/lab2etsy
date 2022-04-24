@@ -49,7 +49,6 @@ function AddCart() {
       const resp = await axios.post(`${URL}/order`, {
         Order: addCartLocalStorage,
         TotalPrice: totalPrice,
-        NumberOfItems: 10,
         OrderID: uuidv4()
       }, {
         headers: login ? {Authorization: login} : {}

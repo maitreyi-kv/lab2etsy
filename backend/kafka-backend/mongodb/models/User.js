@@ -11,7 +11,6 @@ const User = new Schema({
   Orders: [{
     Order: Array,
     TotalPrice: Number,
-    NumberOfItems: Number,
     OrderID: String
   }]
 });
