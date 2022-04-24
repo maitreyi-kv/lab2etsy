@@ -32,6 +32,7 @@ function AddCart() {
     }
 
     postOrder().then(res => console.log("Order response", res)).catch(err => console.log("err", err));
+    localStorage.removeItem('cartItems');
     navigate("/purchase")
 
     console.log("Local", addCartLocalStorage)
