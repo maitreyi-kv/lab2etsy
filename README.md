@@ -36,3 +36,5 @@ sudo amazon-linux-extras install docker
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 ```
+
+(Follow this to setup VM: https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
