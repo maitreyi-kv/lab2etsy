@@ -19,7 +19,7 @@ export default function Product() {
     const fetchProduct = async () => {
       const config = {
         method: 'get',
-        url: `http://localhost:3001/product/${productID}`,
+        url: `${URL}/product/${productID}`,
         headers: login ? {Authorization: login} : {}
       };
 

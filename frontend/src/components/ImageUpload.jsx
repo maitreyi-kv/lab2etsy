@@ -12,7 +12,7 @@ export default function ImageUpload() {
 
         const getImageURL = async () => {
 
-            const resp = await axios.post('http://localhost:3001/s3image', {fileType: selectedFile.type, fileName: selectedFile.name});
+            const resp = await axios.post(`${URL}/s3image`, {fileType: selectedFile.type, fileName: selectedFile.name});
             console.log("URL ===", resp.data.url);
             setUrlUpload(resp.data.url);
             return resp.data.url;

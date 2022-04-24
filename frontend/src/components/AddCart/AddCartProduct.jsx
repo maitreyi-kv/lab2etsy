@@ -36,25 +36,25 @@ function AddCartProduct({product}) {
     setQuantity(e.target.value)
   }
 
-  const favToggle = () => {
-    if (login) {
-      const toggleFav = async () => {
-        const config = {
-          method: 'post',
-          url: `http://localhost:3001/favorite/`,
-          headers: {Authorization: login},
-          data: {productID: product._id, action: !fav}
-        };
-
-        console.log("URL", config);
-        const resp = await axios(config);
-        console.log("Response fav", resp);
-        return resp;
-      }
-
-      toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav" + err));
-    }
-  }
+  // const favToggle = () => {
+  //   if (login) {
+  //     const toggleFav = async () => {
+  //       const config = {
+  //         method: 'post',
+  //         url: `${URL}/favorite/`,
+  //         headers: {Authorization: login},
+  //         data: {productID: product._id, action: !fav}
+  //       };
+  //
+  //       console.log("URL", config);
+  //       const resp = await axios(config);
+  //       console.log("Response fav", resp);
+  //       return resp;
+  //     }
+  //
+  //     toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav" + err));
+  //   }
+  // }
 
   const descriptionSave = (e) => {
     setCheckboxDescription(e.target.value);
@@ -82,10 +82,6 @@ function AddCartProduct({product}) {
       <br/>
       <input type="checkbox" id="checker" checked={checkbox} onClick={() => setCheckbox(!checkbox)} />
       { checkbox ? <input id="note" name="note" onChange={descriptionSave}/> : ''}
-      {/*{fav ? <div>Fav</div> : <div>Not fav</div>}*/}
-
-      {/*{login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :*/}
-      {/*  <FavoriteBorderIcon/>}*/}
     </div>
   )
 }

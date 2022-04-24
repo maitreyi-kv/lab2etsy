@@ -19,7 +19,7 @@ function ShopHome() {
     const fetchProducts = async () => {
       const config = {
         method: 'get',
-        url: 'http://localhost:3001/shop/products?name=' + storeName,
+        url: `${URL}/shop/products?name=` + storeName,
         headers: login ? {Authorization: login} : {}
       };
 

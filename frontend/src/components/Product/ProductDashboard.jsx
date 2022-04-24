@@ -22,7 +22,7 @@ function ProductDashboard({product}) {
       const toggleFav = async () => {
         const config = {
           method: 'post',
-          url: `http://localhost:3001/favorite/`,
+          url: `${URL}/favorite/`,
           headers: {Authorization: login},
           data: {productID: product._id, action: !fav}
         };

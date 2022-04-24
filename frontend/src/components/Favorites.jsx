@@ -15,7 +15,7 @@ function Favorites() {
     const fetchProducts = async () => {
       const config = {
         method: 'get',
-        url: 'http://localhost:3001/products/favorite',
+        url: `${URL}/products/favorite`,
         headers: login ? {Authorization: login} : {}
       };
 
@@ -35,7 +35,7 @@ function Favorites() {
       const filterProducts = async () => {
         const config = {
           method: 'get',
-          url: 'http://localhost:3001/products/favorite?search=' + searchText,
+          url: `${URL}/products/favorite?search=` + searchText,
           headers: login ? {Authorization: login} : {}
         };
 

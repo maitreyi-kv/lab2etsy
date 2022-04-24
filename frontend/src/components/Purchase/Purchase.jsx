@@ -15,7 +15,7 @@ function Purchase() {
     const fetchProduct = async () => {
       const config = {
         method: 'get',
-        url: `http://localhost:3001/order`,
+        url: `${URL}/order`,
         headers: login ? {Authorization: login} : {}
       };
 

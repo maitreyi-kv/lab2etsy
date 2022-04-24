@@ -16,7 +16,7 @@ export default function Products() {
             console.log("Search etxt", searchParams)
             const config = {
                 method: 'get',
-                url: 'http://localhost:3001/products',
+                url: `${URL}/products`,
                 headers: login ? { Authorization: login } : {}
             };
 

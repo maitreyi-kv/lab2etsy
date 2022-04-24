@@ -22,7 +22,7 @@ function ShopCreate() {
     const checkShopExists = async () => {
       const config = {
         method: 'get',
-        url: 'http://localhost:3001/shop/',
+        url: `${URL}/shop/`,
         headers: login ? {Authorization: login} : {}
       };
 
@@ -42,7 +42,7 @@ function ShopCreate() {
     const checkShopAvail = async () => {
       const config = {
         method: 'post',
-        url: 'http://localhost:3001/shop/availability',
+        url: `${URL}/shop/availability`,
         headers: login ? {Authorization: login} : {},
         data: {ShopName: shopName}
       };
@@ -61,7 +61,7 @@ function ShopCreate() {
     const createNewShop = async () => {
       const config = {
         method: 'post',
-        url: 'http://localhost:3001/shop/create',
+        url: `${URL}/shop/create`,
         headers: login ? {Authorization: login} : {},
         data: {ShopName: shopName}
       };
