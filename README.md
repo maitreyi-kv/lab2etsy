@@ -27,6 +27,8 @@ cd backend/kafka-backend
 npm i 
 node server.js
 
+![image](https://user-images.githubusercontent.com/98665151/164988584-33314d13-3c41-487c-ab0d-51b889dc29fd.png)
+
 
 # On VM
 
