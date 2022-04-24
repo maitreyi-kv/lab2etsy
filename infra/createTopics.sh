@@ -1,0 +1,17 @@
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getProducts
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  addProducts
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  addProduct
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getProduct
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  deleteProduct
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  login
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  register
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  jwtUser
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  addFavorite
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getFavoriteProducts
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getShop
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getShopAvailability
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  createShop
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getShopDetails
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getCategory
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  postOrder
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic  getOrder
