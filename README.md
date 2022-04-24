@@ -38,3 +38,9 @@ sudo usermod -a -G docker ec2-user
 ```
 
 (Follow this to setup VM: https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
+
+If facing: Got permission denied while trying to connect to the Docker daemon socket, run
+sudo chmod 666 /var/run/docker.sock
+
+
+
