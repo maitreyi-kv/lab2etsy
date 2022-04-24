@@ -8,13 +8,36 @@ import {useNavigate} from 'react-router-dom';
 
 function AddCart() {
   const [cart, setCart] = useState(null);
+  const [price, setPrice] = useState(null);
   const login = useSelector(state => state.login);
   const navigate = useNavigate();
+
+  const updatePrice = products => {
+    let price = 0;
+    if (products.length > 0) {
+      products.map(p => {
+        console.log("price  calc", parseFloat(p.Price) * parseInt(p.QuantityChoosen))
+        price = price + ( parseFloat(p.Price) * parseInt(p.QuantityChoosen) )
+      })
+      console.log("Price===", price);
+    }
+    setPrice(price);
+  }
+
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      let updatedOrder = JSON.parse(localStorage.getItem('cartItems')) || null;
+      console.log("Change in lcoalstorage===", updatedOrder)
+      setCart(updatedOrder);
+      updatePrice(updatedOrder);
+    });
+  })
 
   useEffect(() => {
     return () => {
       let pro = JSON.parse(localStorage.getItem("cartItems"));
       setCart(pro);
+      updatePrice(pro);
     };
   }, []);
 
@@ -50,7 +73,8 @@ function AddCart() {
             )
           })}
         </div>
-          <button onClick={goToPurchase}>Checkout</button>
+          {price ? <h4>Price = {price}</h4> : "No products in cart" }
+          { price? <button onClick={goToPurchase}>Checkout</button> : " Add items"}
         </div>
       }
     </div>

@@ -21,11 +21,9 @@ function AddCartProduct({product}) {
       console.log("Updated", updated)
       if (Number.parseInt(quantity) > 0) {
         updated.push({...product, QuantityChoosen: Number.parseInt(quantity)})
-      } else if(Number.parseInt(quantity) === 0) {
-        console.log("Naviate zerooo")
-        navigate('/addcart');
       }
       localStorage.setItem('cartItems', JSON.stringify(updated));
+      window.dispatchEvent(new Event("storage"));
     }
   }, [quantity])
 
