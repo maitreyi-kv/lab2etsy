@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import axios from 'axios';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function AddCartProduct({product}) {
   const currency = useSelector(state => state.currency);
@@ -35,26 +32,6 @@ function AddCartProduct({product}) {
   const updateQuan = (e) => {
     setQuantity(e.target.value)
   }
-
-  // const favToggle = () => {
-  //   if (login) {
-  //     const toggleFav = async () => {
-  //       const config = {
-  //         method: 'post',
-  //         url: `${URL}/favorite/`,
-  //         headers: {Authorization: login},
-  //         data: {productID: product._id, action: !fav}
-  //       };
-  //
-  //       console.log("URL", config);
-  //       const resp = await axios(config);
-  //       console.log("Response fav", resp);
-  //       return resp;
-  //     }
-  //
-  //     toggleFav().then(r => setFav(!fav)).catch(err => console.log("Error in Fav" + err));
-  //   }
-  // }
 
   const descriptionSave = (e) => {
     setCheckboxDescription(e.target.value);

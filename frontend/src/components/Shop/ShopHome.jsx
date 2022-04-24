@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {Link, useSearchParams} from 'react-router-dom';
 import ModalAddProduct from './ModalAddProduct';
+import {URL} from '../../constants';
 
 function ShopHome() {
   const [products, setProducts] = useState(null);

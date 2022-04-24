@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductDashboard from './Product/ProductDashboard';
 import {IconButton} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import {URL} from '../constants';
 
 function Favorites() {
   const [products, setProducts] = useState(null);

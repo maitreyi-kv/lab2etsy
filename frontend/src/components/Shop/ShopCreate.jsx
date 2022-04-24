@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {Navigate, useNavigate} from 'react-router-dom';
+import {URL} from '../../constants';
 
 function ShopCreate() {
   const [shop, setShop] = useState(null);

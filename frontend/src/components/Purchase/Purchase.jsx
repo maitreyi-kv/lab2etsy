@@ -1,10 +1,8 @@
-import React from 'react'
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import AddCartProduct from '../AddCart/AddCartProduct';
 import PurchasedOrders from './PurchasedOrders';
+import {URL} from '../../constants';
 
 function Purchase() {
   const [orders, setOrders] = useState(null);

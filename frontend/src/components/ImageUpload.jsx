@@ -1,6 +1,6 @@
-import {Link, useSearchParams} from "react-router-dom";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
+import {URL} from '../constants';
 
 export default function ImageUpload() {
     const [selectedFile, setSelectedFile] = useState("");

@@ -1,9 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useSelector} from 'react-redux';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import axios from 'axios';
-import {Link, useNavigate} from "react-router-dom";
 
 function PurchasedOrders({order}) {
   const login = useSelector(state => state.login);

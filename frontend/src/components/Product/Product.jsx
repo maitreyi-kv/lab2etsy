@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import {URL} from '../../constants';
 
 export default function Product() {
   let params = useParams();
@@ -42,7 +43,7 @@ export default function Product() {
       const toggleFav = async () => {
         const config = {
           method: 'post',
-          url: `http://localhost:3001/favorite/`,
+          url: `${URL}/favorite/`,
           headers: {Authorization: login},
           data: {productID: product._id, action: !fav}
         };

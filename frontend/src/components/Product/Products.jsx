@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import ProductDashboard from './ProductDashboard';
+import {URL} from '../../constants';
 
 export default function Products() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +21,7 @@ export default function Products() {
                 headers: login ? { Authorization: login } : {}
             };
 
+            console.log("Products", config);
             let searchText = searchParams.get("search");
             if(searchText) {
                 config.url += `?search=${searchText}`;

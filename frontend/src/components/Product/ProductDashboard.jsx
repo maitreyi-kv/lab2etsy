@@ -4,6 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import {URL} from '../../constants';
 
 function ProductDashboard({product}) {
   const currency = useSelector(state => state.currency);

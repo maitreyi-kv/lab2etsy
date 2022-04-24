@@ -46,17 +46,6 @@ export const Navbar = () => {
                     { login ? <li className="right"><Link to="/purchase">Purchase</Link></li> : '' }
                     { login ? <li><Link to="/logout">Logout</Link></li> : ''}
 
-                    {/*{ isLogged ? <li className="mimic" onClick={logoutFunc}>Logout</li> : <li className="right"><Link to="/login">Login</Link></li> }*/}
-                    {/*{ isLogged ? <li className="right"><Link to="/profile">Profile</Link></li> : '' }*/}
-
-                    {/*{ isLogged ? <li className="right"><Link to="/favorite">Fav</Link></li> : '' }*/}
-                    {/*{ (isLogged !== true) ? <li className="right"><Link to="/register">Register</Link></li> : '' }*/}
-                    {/*<li onClick={resetText}><Link to="/addToCart">*/}
-                    {/*    <IconButton aria-label="addCart">*/}
-                    {/*        <ShoppingCartIcon style={{ fill:"grey"} }/>*/}
-                    {/*    </IconButton>*/}
-                    {/*</Link></li>*/}
-
                 </ul>
             </Typography>
             <hr style={{ borderTop: "gray" }}/>
