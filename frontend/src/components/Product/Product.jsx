@@ -39,6 +39,7 @@ export default function Product() {
   }, [productID]);
 
   const favToggle = () => {
+    console.log("In toggle fav product")
     if (login) {
       const toggleFav = async () => {
         const config = {

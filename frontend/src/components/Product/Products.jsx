@@ -49,14 +49,15 @@ export default function Products() {
     fetchProducts().then(r => console.log("Success", r)).catch(err => console.log("Error in Products useEffect", err));
   }, [searchParams]);
 
-  const favToggle = (product) => {
+  const favToggle = (product, action) => {
+    console.log("In toggle============", product, action)
     if (login) {
       const toggleFav = async () => {
         const config = {
           method: 'post',
           url: `${URL}/favorite/`,
           headers: {Authorization: login},
-          data: {productID: product._id, action: !product.isFavorite}
+          data: {productID: product._id, action: action}
         };
 
         console.log("URL", config);
@@ -64,8 +65,8 @@ export default function Products() {
         console.log("Response fav", resp);
         return resp;
       }
-      // setProducts(product.filter((item) => item._id !== product._id))
-      setProducts(products.map((item) => (item._id === product._id) ? {...product, isFavorite: !product.isFavorite } : item))
+
+      setProducts(products.map((item) => (item._id === product._id) ? {...product, isFavorite: action } : item))
 
       toggleFav().then(r => console.log("Fav posted")).catch(err => console.log("Error in Fav" + err));
     }
