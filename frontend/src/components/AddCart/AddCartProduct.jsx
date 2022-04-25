@@ -21,8 +21,12 @@ function AddCartProduct({product, incQuantity, decQuantity, descriptionSave, set
       <button onClick={() => incQuantity(product)}>+1</button>
       <br/>
 
+      <h7>Gift </h7>
       <input type="checkbox" id="checker" checked={product.Checkbox} onChange={() => setCheckbox(product)}/>
-      {product.Checkbox ? <input id="note" name="note" value={product.CheckboxDesc} onChange={(e) => descriptionSave(product, e.target.value)}/> : ''}
+      {product.Checkbox ?
+        <div>
+        <input id="note" name="note" value={product.CheckboxDesc} onChange={(e) => descriptionSave(product, e.target.value)}/>
+        </div>: ''}
     </div>
   )
 }

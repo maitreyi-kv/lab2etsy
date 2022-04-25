@@ -14,6 +14,8 @@ export default function Product() {
   const [quan, setQuan] = useState(null);
   const login = useSelector(state => state.login);
   const navigate = useNavigate();
+  const currency = useSelector(state => state.currency);
+
 
   useEffect(() => {
     console.log("Login", login)
@@ -77,18 +79,18 @@ export default function Product() {
   }
 
   return (
-    <div>
+    <div style={{ marginLeft: "100px"}}>
       {product &&
         <div>
-          <div>
+          <div style={{float: "left"}}>
             <img src={product.ImageURL} className='img-fluid'
                  alt="alt text" height="200px"/>
           </div>
-          <div>
+          <div style={{float: "left"}}>
             <button onClick={goToShop}>{product.ShopName}</button>
-            <h6>{product.Price}</h6>
-            <h6>{product.Name}</h6>
-            <h6>{product._id}</h6>
+            <h6>Name {product.Name}</h6>
+            <h6>Quanity Sold {product.QuantitySold || 0}</h6>
+            <h6>Price {currency} {product.Price}</h6>
             {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
               <FavoriteBorderIcon/>}
             <br/>

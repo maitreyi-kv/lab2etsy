@@ -6,11 +6,18 @@ const createOrderQuery = async (req) => {
   const {UserID, Order, TotalPrice, OrderID} = req;
 
   console.log("In order", UserID, Order, TotalPrice, OrderID)
-  return UserModel.findByIdAndUpdate(UserID, {
+  await UserModel.findByIdAndUpdate(UserID, {
     $push: {
       Orders: { Order: Order,  TotalPrice, OrderID},
     },
   },{safe: true, upsert: true});
+
+  // TODO: Update products count
+  // return UserModel.findByIdAndUpdate(UserID, {
+  //   $push: {
+  //     Orders: { Order: Order,  TotalPrice, OrderID},
+  //   },
+  // },{safe: true, upsert: true});
 
 }
 
