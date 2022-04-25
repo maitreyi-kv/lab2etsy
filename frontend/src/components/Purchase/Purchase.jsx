@@ -45,7 +45,7 @@ function Purchase() {
   const currentOrder = orders.slice(indexOfFirstOrder, indexOfLastOrder);
 
   return (
-    <div>
+    <div style={{paddingBottom: "60px"}}>
       <select value={postsPerPage} onChange={(e) => setPostsPerPage(parseInt(e.target.value))}>
         <option value="1">1</option>
         <option value="2">2</option>
