@@ -31,10 +31,9 @@ export const Footer = () => {
   };
 
   return (
-    <div>
+    <div className="footer">
       <Typography variant="h6" component="h6">
         <ul>
-
           <li>Country: {country}</li>
           <li>
             <select name="currency" id="currecny" value={currentCurrency} onChange={onChangeCurrency}>
@@ -45,9 +44,6 @@ export const Footer = () => {
               <option value="KNO">KNO</option>
             </select>
           </li>
-          {/*<li>*/}
-          {/*  Currency: {currency}*/}
-          {/*</li>*/}
         </ul>
       </Typography>
       <hr style={{borderTop: "gray"}}/>

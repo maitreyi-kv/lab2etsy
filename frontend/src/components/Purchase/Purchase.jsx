@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import PurchasedOrder from './PurchasedOrder';
 import {URL} from '../../constants';
-import Table from 'react-bootstrap/Table';
 import PurchaseList from './PurchaseList';
+import Pagination from './Pagination';
 
 function Purchase() {
   //Reference : https://github.com/bradtraversy/simple_react_pagination/blob/master/src/App.js
@@ -13,7 +12,7 @@ function Purchase() {
   const login = useSelector(state => state.login);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(1);
 
   useEffect(() => {
     console.log("Login", login)
@@ -39,13 +38,22 @@ function Purchase() {
 
   }, []);
 
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   const indexOfLastOrder = currentPage * postsPerPage;
   const indexOfFirstOrder = indexOfLastOrder - postsPerPage;
   const currentOrder = orders.slice(indexOfFirstOrder, indexOfLastOrder);
 
   return (
     <div>
+      <select value={postsPerPage} onChange={(e) => setPostsPerPage(parseInt(e.target.value))}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+      </select>
       <PurchaseList orders={currentOrder} loading={loading}/>
+      <Pagination ordersPerPage={postsPerPage} totalOrders={orders.length} paginate={paginate}/>
     </div>
   )
 }

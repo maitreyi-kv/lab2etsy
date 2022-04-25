@@ -7,7 +7,7 @@ const currencyReducer = (state = [], action) => {
       localStorage.setItem("currency", payload);
       return payload
     default:
-      return localStorage.getItem("currency");
+      return "USD" || localStorage.getItem("currency");
 
   }
 }

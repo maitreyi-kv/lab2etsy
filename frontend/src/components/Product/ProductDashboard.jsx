@@ -47,13 +47,10 @@ function ProductDashboard({product}) {
       >
         <img src={product.ImageURL} className='img-fluid'
              alt="alt text" height="200px"/>
-        <div> Price {currency} {product.Price} </div>
-        <div> Name {product.Name}</div>
-        <div> Name {product._id}</div>
-        <div> Shopname {product.ShopName}</div>
-        {fav ? <div>Fav</div> : <div>Not fav</div>}
+        <div> {product.Name}</div>
+        <div> {currency} {product.Price} </div>
       </Link>
-      {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
+      {login ? fav ? <FavoriteIcon style={{float: "right"}} onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
         <FavoriteBorderIcon/>}
     </div>
   )

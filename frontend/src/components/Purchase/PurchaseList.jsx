@@ -12,8 +12,8 @@ function PurchaseList({orders, loading}) {
       <Table striped bordered hover>
         <thead>
         <tr>
-          <td>Idx</td>
-          <td> Orders</td>
+          <td>Order Details</td>
+          <td> Orders Items</td>
         </tr>
         </thead>
         <tbody>
@@ -21,9 +21,12 @@ function PurchaseList({orders, loading}) {
           orders.map((order, idx) => (
             // console.log("Order", order)
             <tr key={idx}>
-              <td>{idx + 1}</td>
-              <td><h6>Total Price {order.TotalPrice}</h6>
-                <h6>Date {order.Date}</h6>
+              <td>
+                <h6>Order ID: {order.OrderID}</h6>
+                <h6>Total Price: {order.TotalPrice}</h6>
+                <h6>Date: {order.Date}</h6>
+              </td>
+              <td>
                 <Table striped bordered hover>
                   <thead>
                   <tr>
