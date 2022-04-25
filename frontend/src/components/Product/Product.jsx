@@ -12,6 +12,7 @@ export default function Product() {
   const [product, setProduct] = useState([]);
   const [fav, setFav] = useState(null);
   const [quan, setQuan] = useState(null);
+  const [available, setAvailable] = useState(null);
   const login = useSelector(state => state.login);
   const navigate = useNavigate();
   const currency = useSelector(state => state.currency);
@@ -30,6 +31,8 @@ export default function Product() {
       const resp = await axios(config);
       setProduct(resp.data);
       setFav(resp.data.isFavorite);
+      setAvailable(resp.data.QuantityAvailable);
+
       console.log("Productss", product)
       return resp.data;
     }
@@ -68,7 +71,6 @@ export default function Product() {
 
   const addToCart = () => {
     let current = [];
-    //TODO: Add validations here for min max - use this variable QuantityAvailable
     console.log("Adding product")
     if ("cartItems" in localStorage) {
       current = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -89,13 +91,14 @@ export default function Product() {
           <div style={{float: "left"}}>
             <button onClick={goToShop}>{product.ShopName}</button>
             <h6>Name {product.Name}</h6>
-            <h6>Quanity Sold {product.QuantitySold || 0}</h6>
+            <h6>Sales Count {product.QuantitySold || 0}</h6>
             <h6>Price {currency} {product.Price}</h6>
+            <h6>Description {product.Description}</h6>
             {login ? fav ? <FavoriteIcon onClick={favToggle}/> : <FavoriteBorderIcon onClick={favToggle}/> :
               <FavoriteBorderIcon/>}
             <br/>
-            <input type="number" min="0" onChange={(e) => setQuan(e.target.value)}/>
-            <button type="submit" onClick={addToCart}>Add To Cart</button>
+            { (available > 0 ) ? <input type="number" min="0" onChange={(e) => setQuan(e.target.value)}/> : '' }
+            { (available - quan >= 0) && (available > 0 )? <button type="submit" onClick={addToCart}>Add To Cart</button> : "Out of Stock"}
           </div>
         </div>
       }
