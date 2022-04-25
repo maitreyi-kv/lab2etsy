@@ -15,6 +15,10 @@ function Purchase() {
   const [postsPerPage, setPostsPerPage] = useState(5);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [postsPerPage])
+
+  useEffect(() => {
     console.log("Login", login)
     const fetchProduct = async () => {
       setLoading(true);
