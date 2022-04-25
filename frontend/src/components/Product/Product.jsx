@@ -66,10 +66,12 @@ export default function Product() {
   const addToCart = () => {
     let current = [];
     //TODO: Add validations here for min max - use this variable QuantityAvailable
+    console.log("Adding product")
     if ("cartItems" in localStorage) {
-      current = JSON.parse(localStorage.getItem("cartItems"));
+      current = JSON.parse(localStorage.getItem("cartItems")) || [];
     }
     current.push({...product, QuantityChoosen: Number.parseInt(quan)})
+    console.log("Current", JSON.stringify(current))
     localStorage.setItem("cartItems", JSON.stringify(current))
   }
 

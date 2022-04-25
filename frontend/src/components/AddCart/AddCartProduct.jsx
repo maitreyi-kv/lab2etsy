@@ -1,53 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useSelector} from 'react-redux';
-import {useNavigate} from "react-router-dom";
 
-function AddCartProduct({product}) {
+function AddCartProduct({product, incQuantity, decQuantity, descriptionSave, setCheckbox}) {
   const currency = useSelector(state => state.currency);
-  const [fav, setFav] = useState(product.isFavorite);
-  const login = useSelector(state => state.login);
-  const [quantity, setQuantity] = useState(product.QuantityChoosen);
-  const [updatePage, setUpdatePage] = useState(false);
-  const [checkbox, setCheckbox] = useState(!!product.Checkbox);
-  const [checkboxDescription, setCheckboxDescription] = useState(product.CheckboxDesc);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("hy lag", quantity);
-    console.log("Quan change", quantity);
-    let addCartLocalStorage = JSON.parse(localStorage.getItem("cartItems"));
-    if (addCartLocalStorage) {
-      let updated = addCartLocalStorage.filter(localProduct => localProduct._id !== product._id);
-      console.log("Updated", updated)
-      if (Number.parseInt(quantity) > 0) {
-        updated.push({...product, QuantityChoosen: Number.parseInt(quantity)})
-      }
-      localStorage.setItem('cartItems', JSON.stringify(updated));
-      window.dispatchEvent(new Event("storage"));
-    }
-  }, [quantity])
-
-  useEffect(() => {
-    let addCartLocalStorage = JSON.parse(localStorage.getItem("cartItems"));
-    if(addCartLocalStorage) {
-      let updated = addCartLocalStorage.filter(localProduct => localProduct._id !== product._id);
-      let newChanges = {...product, Checkbox: checkbox, CheckboxDesc: checkboxDescription}
-      updated.push(newChanges);
-      localStorage.setItem('cartItems', JSON.stringify(updated));
-      console.log("Updated", updated)
-    }
-  }, [checkboxDescription])
-
-  const updateQuan = (e) => {
-    setQuantity(e.target.value)
-  }
-
-  const descriptionSave = (e) => {
-    setCheckboxDescription(e.target.value);
-  }
+  if (product === {}) return;
 
   return (
-    <div className='bg-image hover-overlay' style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
+    <div key={product._id} className='bg-image hover-overlay'
+         style={{minWidth: '24rem', maxWidth: '24rem', padding: '50px'}}>
 
       <img src={product.ImageURL} className='img-fluid'
            alt="alt text" height="200px"/>
@@ -55,11 +16,13 @@ function AddCartProduct({product}) {
       <div> Name {product.Name}</div>
       <div> Name {product._id}</div>
       <div> Shopname {product.ShopName}</div>
-      <label form="quan">Quantity</label>
-      <input type="number" id="quan" value={quantity} onChange={updateQuan}/>
+      <div> Quantity {product.QuantityChoosen}</div>
+      <button onClick={() => decQuantity(product)}>-1</button>
+      <button onClick={() => incQuantity(product)}>+1</button>
       <br/>
-      <input type="checkbox" id="checker" checked={checkbox} onClick={() => setCheckbox(!checkbox)} />
-      { checkbox ? <input id="note" name="note" onChange={descriptionSave}/> : ''}
+
+      <input type="checkbox" id="checker" checked={product.Checkbox} onChange={() => setCheckbox(product)}/>
+      {product.Checkbox ? <input id="note" name="note" value={product.CheckboxDesc} onChange={(e) => descriptionSave(product, e.target.value)}/> : ''}
     </div>
   )
 }

@@ -1,18 +1,24 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import PurchasedOrders from './PurchasedOrders';
+import PurchasedOrder from './PurchasedOrder';
 import {URL} from '../../constants';
 import Table from 'react-bootstrap/Table';
-
+import PurchaseList from './PurchaseList';
 
 function Purchase() {
-  const [orders, setOrders] = useState(null);
+  //Reference : https://github.com/bradtraversy/simple_react_pagination/blob/master/src/App.js
+
+  const [orders, setOrders] = useState([]);
   const login = useSelector(state => state.login);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     console.log("Login", login)
     const fetchProduct = async () => {
+      setLoading(true);
       const config = {
         method: 'get',
         url: `${URL}/order`,
@@ -29,54 +35,17 @@ function Purchase() {
     fetchProduct().then(r => console.log("In Get Product by ID", r, orders)).catch(err => console.log("Error in" +
       " Products" +
       " useEffect", err));
+    setLoading(false);
 
   }, []);
 
+  const indexOfLastOrder = currentPage * postsPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - postsPerPage;
+  const currentOrder = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
   return (
     <div>
-      {orders &&
-        <div>
-          <div style={{display: "flex", flexWrap: "wrap", width: "80%"}}>
-            <Table striped bordered hover>
-              <thead>
-              <tr>
-                <td>Idx</td>
-                <td> Orders</td>
-              </tr>
-              </thead>
-              <tbody>
-              {
-                orders.map((order, idx) => (
-                  // console.log("Order", order)
-                  <tr>
-                    <td>{idx + 1}</td>
-                    <td><h6>Total Price {order.TotalPrice}</h6>
-                      <h6>Date {order.Date}</h6>
-                      <Table striped bordered hover>
-                        <thead>
-                        <tr>
-                          <td>Index</td>
-                          <td>Photo</td>
-                          <td>Name</td>
-                          <td>ShopName</td>
-                          <td>Quantity</td>
-                          <td>Price</td>
-                          <td>Gift</td>
-                          <td>Checkbox</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <PurchasedOrders order={{order: order.Order}}/>
-                        </tbody>
-                      </Table></td>
-                  </tr>
-                ))
-              }
-              </tbody>
-            </Table>
-          </div>
-        </div>
-      }
+      <PurchaseList orders={currentOrder} loading={loading}/>
     </div>
   )
 }

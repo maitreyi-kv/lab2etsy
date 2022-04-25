@@ -1,15 +1,15 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
 
-function PurchasedOrders({order}) {
+function PurchasedOrder({order}) {
   const login = useSelector(state => state.login);
   const currency = useSelector(state => state.currency);
 
   return (
-    <tr>
+    <>
       {
         order.order.map((product, idx) => (
-          <>
+          <tr>
             <td>{idx+1}</td>
             <td>
               <img height="100px" src={product.ImageURL}/>
@@ -21,11 +21,11 @@ function PurchasedOrders({order}) {
             { product.Checkbox? <td>Gift wrap</td> : <td></td>}
             { product.CheckboxDesc ? <td>{product.CheckboxDesc}</td> : <td></td> }
 
-          </>
+          </tr>
         ))
       }
-    </tr>
+    </>
   )
 }
 
-export default PurchasedOrders
+export default PurchasedOrder
