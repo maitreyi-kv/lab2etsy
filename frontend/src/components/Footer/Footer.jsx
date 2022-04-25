@@ -32,21 +32,16 @@ export const Footer = () => {
 
   return (
     <div className="footer">
-      <Typography variant="h6" component="h6">
-        <ul>
-          <li>Country: {country}</li>
-          <li>
-            <select name="currency" id="currecny" value={currentCurrency} onChange={onChangeCurrency}>
-              <option value="USD">USD</option>
-              <option value="INR">INR</option>
-              <option value="DOWN">DOWN</option>
-              <option value="YEN">YEN</option>
-              <option value="KNO">KNO</option>
-            </select>
-          </li>
-        </ul>
-      </Typography>
-      <hr style={{borderTop: "gray"}}/>
+      <div>Country: {country}</div>
+      <div>
+        <select name="currency" id="currecny" value={currentCurrency} onChange={onChangeCurrency}>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="DOWN">DOWN</option>
+          <option value="YEN">YEN</option>
+          <option value="KNO">KNO</option>
+        </select>
+      </div>
     </div>
   )
 }
