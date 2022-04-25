@@ -1,4 +1,5 @@
 const UserModel = require('../models/User');
+const ProductModel = require('../models/Product');
 const mongoose = require("mongoose");
 
 const createOrderQuery = async (req) => {
@@ -6,19 +7,26 @@ const createOrderQuery = async (req) => {
   const {UserID, Order, TotalPrice, OrderID} = req;
 
   console.log("In order", UserID, Order, TotalPrice, OrderID)
-  await UserModel.findByIdAndUpdate(UserID, {
+  let res = await UserModel.findByIdAndUpdate(UserID, {
     $push: {
       Orders: { Order: Order,  TotalPrice, OrderID},
     },
   },{safe: true, upsert: true});
 
-  // TODO: Update products count
-  // return UserModel.findByIdAndUpdate(UserID, {
-  //   $push: {
-  //     Orders: { Order: Order,  TotalPrice, OrderID},
-  //   },
-  // },{safe: true, upsert: true});
+  for(let order in Order) {
+    console.log("In order===", order)
+    let updateOrder = await ProductModel.findByIdAndUpdate(Order[order]._id,
+      { "$inc": { QuantityAvailable: -Order[order].QuantityChoosen } }
+    ,{safe: true, upsert: true});
 
+    console.log("Update order", updateOrder)
+    await ProductModel.findByIdAndUpdate(Order[order]._id,
+      { "$inc": { QuantitySold: Order[order].QuantityChoosen } }
+      ,{safe: true, upsert: true});
+
+    console.log("Updated value of product", Order[order].QuantityChoosen)
+  }
+  return res;
 }
 
 const getOrderQuery = async (req) => {

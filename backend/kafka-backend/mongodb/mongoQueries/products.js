@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const createProductsQuery = async (product) => {
   console.log("Before writing...", product);
-  const pro = new ProductModel(product);
+  const pro = new ProductModel({...product, QuantitySold: 0});
   return pro.save();
 }
 

@@ -3,7 +3,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {Link} from "react-router-dom";
 
-function ProductDashboard({product, favToggle }) {
+function ProductDashboard({product, favToggle}) {
   const currency = useSelector(state => state.currency);
   const login = useSelector(state => state.login);
 

@@ -14,8 +14,6 @@ function AddCartProduct({product, incQuantity, decQuantity, descriptionSave, set
            alt="alt text" height="200px"/>
       <div> Price {currency} {product.Price} </div>
       <div> Name {product.Name}</div>
-      <div> Name {product._id}</div>
-      <div> Shopname {product.ShopName}</div>
       <div> Quantity {product.QuantityChoosen}</div>
       <button onClick={() => decQuantity(product)}>-1</button>
       <button onClick={() => incQuantity(product)}>+1</button>

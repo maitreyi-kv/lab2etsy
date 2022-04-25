@@ -9,7 +9,7 @@ const Products = new Schema({
   Description: String,
   ImageURL: String,
   QuantityAvailable: Number,
-  QuantitySold: 0,
+  QuantitySold: Number,
   Category: String,
   ShopName: String,
   UserID: String
