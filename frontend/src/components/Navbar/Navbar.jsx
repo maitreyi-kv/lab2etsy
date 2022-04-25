@@ -25,13 +25,13 @@ export const Navbar = () => {
     }
 
     return (
-        <div>
+        <div style={{marginLeft: "50px"}}>
             <Typography variant="h6" component="h6">
                 <ul>
                     {/*<li>Etsy</li>*/}
                     <li onClick={resetText}><Link to="/home">Etsy</Link></li>
-                    <li className="search-bar-li">
-                        <input type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
+                    <li className="search-bar-li" style={{width: "50%"}}>
+                        <input style={{width: "100%"}} type="text" name="name" className="search-bar" value={searchText} onChange={onChangeText}/>
                     </li>
                     <li style={{ paddingTop: '10px', width: "5%" }}>
                         <IconButton aria-label="Favorite" onClick={() => search()}>
@@ -44,6 +44,7 @@ export const Navbar = () => {
                     { login ? <li className="right"><Link to="/shop">Shop</Link></li> : '' }
                     { login ? <li className="right"><Link to="/addcart">Cart</Link></li> : '' }
                     { login ? <li className="right"><Link to="/purchase">Purchase</Link></li> : '' }
+                    { login ? <li className="right"><Link to="/profile">Profile</Link></li> : '' }
                     { login ? <li><Link to="/logout">Logout</Link></li> : ''}
 
                 </ul>
