@@ -7,9 +7,20 @@ import {URL} from '../../constants';
 
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParamsVal, setSearchParamsVal] = useState(null);
   console.log("Search parmas", searchParams.get("search"))
   const [products, setProducts] = useState([]);
+  const [checkbox, setCheckbox] = useState(false);
+  const [sortBy, setSortBy] = useState([]);
   const login = useSelector(state => state.login);
+
+  useEffect(() => {
+    //TODO: Paste the Checkbox
+  }, [checkbox])
+
+  useEffect(() => {
+    //TODO: Paste the SortBy
+  }, [sortBy])
 
   useEffect(() => {
 
@@ -24,6 +35,7 @@ export default function Products() {
       console.log("Products", config);
       let searchText = searchParams.get("search");
       if (searchText) {
+        setSearchParamsVal(searchText);
         config.url += `?search=${searchText}`;
       }
 
@@ -37,13 +49,68 @@ export default function Products() {
     fetchProducts().then(r => console.log("Success", r)).catch(err => console.log("Error in Products useEffect", err));
   }, [searchParams]);
 
+  const favToggle = (product) => {
+    if (login) {
+      const toggleFav = async () => {
+        const config = {
+          method: 'post',
+          url: `${URL}/favorite/`,
+          headers: {Authorization: login},
+          data: {productID: product._id, action: !product.isFavorite}
+        };
+
+        console.log("URL", config);
+        const resp = await axios(config);
+        console.log("Response fav", resp);
+        return resp;
+      }
+      // setProducts(product.filter((item) => item._id !== product._id))
+      setProducts(products.map((item) => (item._id === product._id) ? {...product, isFavorite: !product.isFavorite } : item))
+
+      toggleFav().then(r => console.log("Fav posted")).catch(err => console.log("Error in Fav" + err));
+    }
+  }
+
   return (
-    <div style={{display: "flex", flexWrap: "wrap"}}>
-      {products.map((product) => {
-        return (
-          <ProductDashboard product={product}/>
-        )
-      })}
+    <div>
+      <div style={{float: "left", paddingTop: "50px"}}>
+        {searchParamsVal ?
+          <div style={{paddingLeft: "40px"}}>
+            <label style={{float: "right", width: "30%"}} htmlFor="min">Min</label>
+            <input style={{float: "right", width: "10%"}} type="number" id="min" onChange={() => setCheckbox(!checkbox)}/>
+            <label style={{float: "right", width: "30%"}} htmlFor="max">Max</label>
+            <input style={{float: "right", width: "10%"}} type="number" id="max" onChange={() => setCheckbox(!checkbox)}/>
+          </div> : ''
+        }
+      </div>
+      <div style={{float: "right", marginRight: "100px"}}>
+        {searchParamsVal ?
+          <div style={{paddingLeft: "40px"}}>
+            <label style={{float: "right", width: "30%"}} htmlFor="checker">Ignore Sold Out</label>
+            <input style={{float: "right", width: "30%"}} type="checkbox" id="checker" checked={checkbox}
+                   onChange={() => setCheckbox(!checkbox)}/>
+          </div> : ''
+        }
+        {searchParamsVal ?
+          <div>
+            <select style={{float: "right", padding: "10px"}} value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}>
+              <option value="price">Price</option>
+              <option value="Quality">Quality</option>
+              <option value="SalesCount">Sales Count</option>
+            </select>
+          </div> : ''
+        }
+      </div>
+      <div style={{float: "left"}}>
+        <div style={{display: "flex", flexWrap: "wrap", marginLeft: "120px"}}>
+          {products.map((product) => {
+            return (
+              <ProductDashboard product={product} favToggle={favToggle}/>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }
