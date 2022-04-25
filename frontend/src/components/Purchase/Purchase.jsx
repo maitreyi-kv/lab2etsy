@@ -12,7 +12,7 @@ function Purchase() {
   const login = useSelector(state => state.login);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
 
   useEffect(() => {
     console.log("Login", login)
