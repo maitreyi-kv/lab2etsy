@@ -46,7 +46,7 @@ describe("Auth", function () {
       .expect(200) // THis is HTTP response
       .end(function (err, res) {
         res.status.should.equal(200);
-        res.body.should.deepEqual({ message: 'User already exists' })
+        res.body.should.deepEqual({ message: 'Email already registered' })
         done();
       });
   });
@@ -89,40 +89,18 @@ describe("Auth", function () {
 describe("Get category", function () {
   it("should return categories (both basic and custom if added)", function (done) {
     server
-      .get("/category")
+      .get("/products/category")
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InVzZXI0IiwiVXNlcklEIjoiNjI2Nzc2NDczMzcyMDg1NWJlNzIwMGI5IiwiaWF0IjoxNjUwOTQ4NDgxLCJleHAiOjE2NTEwMzQ4ODF9.YMVkTcc13xFuplSBeTwLuTWtzD6Dfg2GPdySt4HVR_E')
       .expect("Content-type", /json/)
       .expect(200) // THis is HTTP response
       .end(function (err, res) {
-        res.status.should.equal(200);
-        res.body.should.deepEqual([
-            {CategoryID: 1, CatName: 'Clothing'},
-            {CategoryID: 2, CatName: 'Jewellery'},
-            {CategoryID: 3, CatName: 'Entertainment'},
-            {CategoryID: 4, CatName: 'Home Decor'},
-            {CategoryID: 5, CatName: 'Art'},
-            {CategoryID: 6, CatName: 'Other'},
-            {CategoryID: 10, CatName: 'dummycolumn'},
-            {CategoryID: 12, CatName: 'Entertainment'},
-            {CategoryID: 13, CatName: 'fdgdfg'}
-          ]
-        )
-        done();
-      });
-  });
-});
-
-describe("Get store name", function () {
-  it("should if storename is available or not", function (done) {
-    server
-      .post("/getStoreName")
-      .send({
-        Name: 'randomname'
-      })
-      .expect("Content-type", /json/)
-      .expect(200) // THis is HTTP response
-      .end(function (err, res) {
-        res.status.should.equal(200);
-        res.body.should.deepEqual({available: true})
+        console.log("Res", res.body)
+        res.body.should.deepEqual(['Clothing',
+          'Jewellery',
+          'Entertainment',
+          'Home Decor',
+          'Art',
+          'Other'])
         done();
       });
   });
