@@ -9,10 +9,11 @@ import Register from './components/Login/Register';
 import Login from './components/Login/Login';
 import Logout from './components/Login/Logout';
 import ShopCreate from './components/Shop/ShopCreate';
-import Favorites from './components/Favorites';
 import ShopHome from './components/Shop/ShopHome';
 import AddCart from './components/AddCart/AddCart';
 import Purchase from './components/Purchase/Purchase';
+import {Profile} from './components/Profile/Profile';
+import {Edit} from './components/Profile/Edit';
 
 function App() {
   return (
@@ -24,12 +25,13 @@ function App() {
           <Route path="/image" element={<ImageUpload/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/logout" element={<Logout/>}/>
           <Route path="/shop" element={<ShopCreate/>}/>
           <Route path="/shophome" element={<ShopHome/>}/>
           <Route path="/addcart" element={<AddCart/>}/>
           <Route path="/purchase" element={<Purchase/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/edit" element={<Edit/>}/>
           <Route
             path="*"
             element={
@@ -44,7 +46,6 @@ function App() {
         </Routes>
         <Footer/>
       </BrowserRouter>
-      {/*<Link to="/home">Home</Link>*/}
     </div>
   );
 }
