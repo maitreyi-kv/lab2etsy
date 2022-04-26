@@ -40,11 +40,11 @@ export const Navbar = () => {
                     </li>
                     { !login ? <li><Link to="/login">Login</Link></li> : '' }
                     { !login ? <li><Link to="/register">Register</Link></li> : ''}
-                    { login ? <li><Link to="/favorites">Favorites</Link></li> : '' }
+                    { login ? <li><Link to="/profile">Favorites</Link></li> : '' }
                     { login ? <li className="right"><Link to="/shop">Shop</Link></li> : '' }
                     { login ? <li className="right"><Link to="/addcart">Cart</Link></li> : '' }
                     { login ? <li className="right"><Link to="/purchase">Purchase</Link></li> : '' }
-                    { login ? <li className="right"><Link to="/profile">Profile</Link></li> : '' }
+                    {/*{ login ? <li className="right"><Link to="/profile">Profile</Link></li> : '' }*/}
                     { login ? <li><Link to="/logout">Logout</Link></li> : ''}
 
                 </ul>

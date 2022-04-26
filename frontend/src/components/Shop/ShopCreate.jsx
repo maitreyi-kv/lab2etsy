@@ -6,6 +6,7 @@ import {URL} from '../../constants';
 
 function ShopCreate() {
   const [shop, setShop] = useState(null);
+  const [address, setAddress] = useState(null);
   const [shopName, setShopName] = useState("");
   const [available, setAvailable] = useState(false);
   const login = useSelector(state => state.login);
@@ -30,7 +31,8 @@ function ShopCreate() {
       console.log("URL", config.url);
       const resp = await axios(config);
       console.log("Shop get===", resp.data);
-      setShop(resp.data);
+      setShop(resp.data.ShopName);
+      setAddress(resp.data.Address);
       return resp.data;
     }
 
@@ -81,18 +83,22 @@ function ShopCreate() {
 
   return (
     <div>
-      {/*{shop ? <Navigate to="shophome?name=shop" /> : ""}*/}
-
-      {
-        !shop &&
+      {!address ? <h4>Add address to create a Store</h4> :
         <div>
-          <label> Store Name:<input type="text" name="name" value={shopName}
-                                    onChange={(e) => setShopName(e.target.value)}/></label>
-          <button onClick={checkAvailability}> Check Availability</button>
-          {available ? <button onClick={createShop}> Create Shop </button> : ''}
+          {
+            !shop &&
+            <div>
+              <label> Store Name:<input type="text" name="name" value={shopName}
+                                        onChange={(e) => setShopName(e.target.value)}/></label>
+              <button onClick={checkAvailability}> Check Availability</button>
+              {available ? <button onClick={createShop}> Create Shop </button> : ''}
+            </div>
+          }
         </div>
-      }</div>
+      }
+    </div>
   )
 }
+
 
 export default ShopCreate

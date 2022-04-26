@@ -6,43 +6,41 @@ const decodedJWT = require('./utils');
 
 const router=express.Router()
 
-router.post('/', checkAuth, function(req, res){
-    console.log("In fav product")
+router.post('/profile', checkAuth, function(req, res){
     const jwtTokenDecoded = decodedJWT(req.get('authorization'));
     let payloadObj = req.body
     if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID;
     console.log("payload", payloadObj, req.body);
-    kafka.make_request(kafkaTopic.addFavorite , payloadObj, function(err,results) {
+    kafka.make_request(kafkaTopic.editProfile , payloadObj, function(err,results) {
         if (err){
             res.json({
                 status:"error",
                 msg:"System Error, Try Again.", err
             })
         }else{
-            console.log("Inside else");
+            console.log("Inside login else");
                 res.json(results);
                 res.end();
             }
     });
 });
 
-router.get('/', checkAuth, function(req, res){
+router.get('/profile', checkAuth, function(req, res){
     const jwtTokenDecoded = decodedJWT(req.get('authorization'));
-    let payloadObj = { ...req.body, ...req.query}
-    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID
-    console.log("jwtttt", jwtTokenDecoded, req.get('authorization'));
-    kafka.make_request(kafkaTopic.getFavoriteProducts, payloadObj,  function(err, results) {
+    let payloadObj = {}
+    if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID;
+    console.log("payload", payloadObj, req.body);
+    kafka.make_request(kafkaTopic.getProfile , payloadObj, function(err,results) {
         if (err){
             res.json({
                 status:"error",
-                msg:"System Error, Try Again."
+                msg:"System Error, Try Again.", err
             })
         }else{
-            console.log("Inside else");
+            console.log("Inside login else");
             res.json(results);
             res.end();
         }
-
     });
 });
 

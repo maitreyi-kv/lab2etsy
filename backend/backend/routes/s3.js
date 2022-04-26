@@ -21,14 +21,13 @@ const s3 = new aws.S3({
 })
 
 async function generateUploadURL(req) {
-    // const imageName = "random"
     console.log("bosdyyysdgf", req.body)
     const rawBytes = await randomBytes(16);
     const imageName = rawBytes.toString('hex');
 
     const params = ({
         Bucket: bucketName,
-        Key: req.body.fileName,
+        Key: rawBytes+req.body.fileName,
         Expires: 1000,
         ContentType: req.body.fileType
     })

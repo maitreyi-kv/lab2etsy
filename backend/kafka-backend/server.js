@@ -4,6 +4,7 @@ var product = require('./services/product.js');
 var register = require('./services/auth');
 var favorite = require('./services/favorite');
 var shop = require('./services/shop');
+var profile = require('./services/profile');
 
 require('./mongodb/connection');
 const order = require('./services/order');
@@ -45,6 +46,8 @@ handleTopicRequest(kafkaTopic.addProduct, product.createProduct)
 handleTopicRequest(kafkaTopic.getProducts, product.getProducts)
 handleTopicRequest(kafkaTopic.getProduct, product.getSingleProduct)
 handleTopicRequest(kafkaTopic.register, register.registerUser)
+handleTopicRequest(kafkaTopic.editProfile, profile.updateProfile)
+handleTopicRequest(kafkaTopic.getProfile, profile.getProfile)
 handleTopicRequest(kafkaTopic.login, register.loginUser)
 handleTopicRequest(kafkaTopic.jwtUser, register.checkJWT)
 handleTopicRequest(kafkaTopic.addFavorite, favorite.favoriteAdd)

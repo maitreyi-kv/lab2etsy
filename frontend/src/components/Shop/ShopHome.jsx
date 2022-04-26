@@ -12,6 +12,7 @@ function ShopHome() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [storeName, setStoreName] = useState(searchParams.get("name"));
   const currency = useSelector(state => state.currency);
+  const [name, setName] = useState("")
 
 
   useEffect(() => {

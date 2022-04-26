@@ -6,6 +6,11 @@ const User = new Schema({
   Email: String,
   Password: String,
   Name: String,
+  Address: String,
+  Country: String,
+  City: String,
+  Phone: String,
+  ImageURL: String,
   Favorites: Array,
   ShopName: String,
   Orders: [{
