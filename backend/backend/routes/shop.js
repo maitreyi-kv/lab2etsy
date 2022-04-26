@@ -48,6 +48,27 @@ router.get('/products', function(req, res){
   });
 });
 
+router.get('/update', function(req, res){
+  console.log("In update shop");
+  const jwtTokenDecoded = decodedJWT(req.get('authorization'));
+  let payloadObj = { ...req.body, ...req.query}
+  if(jwtTokenDecoded) payloadObj.UserID = jwtTokenDecoded.UserID
+  console.log("Get shop jwt", jwtTokenDecoded, req.get('authorization'), payloadObj);
+  kafka.make_request(kafkaTopic.updateProducts, payloadObj,  function(err, results) {
+    if (err){
+      res.json({
+        status:"error",
+        msg:"System Error, Try Again."
+      })
+    }else{
+      console.log("Inside else");
+      res.json(results);
+      res.end();
+    }
+
+  });
+});
+
 router.post('/availability', function(req, res){
   console.log("In avail shop");
   const jwtTokenDecoded = decodedJWT(req.get('authorization'));

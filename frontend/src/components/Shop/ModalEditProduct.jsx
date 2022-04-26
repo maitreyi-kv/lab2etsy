@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 import {URL} from '../../constants';
 
 
-function ModalEdit({product, ShopName}) {
+function ModalEdit({product}) {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("")
   const [category, setCategory] = useState(null)
@@ -21,13 +21,15 @@ function ModalEdit({product, ShopName}) {
   const [urlUpload, setUrlUpload] = useState("");
 
   const login = useSelector(state => state.login);
+
   const setModalIsOpenToTrue = () => {
     setShow(true)
+    console.log("Modal open!")
     let configPost = {
       method: 'get',
-      url: `${URL}:3001/category`,
+      url: `${URL}/products/category`,
       data: {},
-      headers: {}
+      headers: login ? {Authorization: login} : {}
     };
 
     const getCategory = async () => {
@@ -97,7 +99,6 @@ function ModalEdit({product, ShopName}) {
       method: 'post',
       url: `${URL}:3001/updateProduct`,
       data: {
-        CreatedByID: ShopName,
         Name: name,
         Description: description,
         Price: price,
@@ -157,7 +158,7 @@ function ModalEdit({product, ShopName}) {
             <Form.Select onChange={handleChangeCategory} value={selectedCategory}>
               {category ?
                 category.map((e) => (
-                    <option value={e.CatName}>{e.CatName}</option>
+                    <option value={e}>{e}</option>
                   )
                 ) : "Loading..."
               }

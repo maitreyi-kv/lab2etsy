@@ -45,6 +45,7 @@ function handleTopicRequest(topic_name, fname) {
 handleTopicRequest(kafkaTopic.addProduct, product.createProduct)
 handleTopicRequest(kafkaTopic.getProducts, product.getProducts)
 handleTopicRequest(kafkaTopic.getProduct, product.getSingleProduct)
+handleTopicRequest(kafkaTopic.updateProducts, product.updateProducts)
 handleTopicRequest(kafkaTopic.register, register.registerUser)
 handleTopicRequest(kafkaTopic.editProfile, profile.updateProfile)
 handleTopicRequest(kafkaTopic.getProfile, profile.getProfile)

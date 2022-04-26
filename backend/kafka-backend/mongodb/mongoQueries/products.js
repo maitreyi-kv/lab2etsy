@@ -49,6 +49,14 @@ const getProductByID = async (req) => {
   return { ...product, isFavorite: isFavorite };
 }
 
+const updateProductsQuery = async (req) => {
+  let {product} = req
+  return ProductModel.findByIdAndUpdate(product._id, {
+    Name: product.Name,
+    Quantity: product.Quantity
+  }).lean();
+}
+
 const _getProductByID = async (id) => {
   let pro = await ProductModel.findById(id).lean();
   pro.isFavorite = true;
@@ -56,4 +64,4 @@ const _getProductByID = async (id) => {
   return pro;
 }
 
-module.exports = { createProductsQuery, getAllProducts, getProductByID, _getProductByID }
+module.exports = { createProductsQuery, getAllProducts, getProductByID, _getProductByID, updateProductsQuery }

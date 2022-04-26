@@ -25,6 +25,15 @@ function getSingleProduct(msg, callback) {
     return {"single": "product"};
 }
 
-module.exports = { createProduct, getProducts, getSingleProduct };
+function updateProducts(msg, callback) {
+
+    console.log("Inside get single product", msg);
+    updateProductsQuery(msg).then(r => {
+        callback(null, r)
+    }).catch(err => console.log("Err======", err));
+    return {"single": "product"};
+}
+
+module.exports = { createProduct, getProducts, getSingleProduct, updateProducts };
 
 
