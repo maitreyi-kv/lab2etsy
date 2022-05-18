@@ -39,6 +39,23 @@ var schema = buildSchema(`
       UserID: String  
   }
   
+  input ShopInput {
+      ShopName: String
+      UserID: String
+      ShopImageURL: String
+  }
+  
+  input OrderInput {
+      OrderID: Int
+      Name: String
+      Price: String
+      Description: String
+      ImageURL: String
+      Category: String
+      ShopName: String
+      UserID: String  
+  }
+  
   type UserProfile {
       Email: String
       Password: String
@@ -95,10 +112,10 @@ var schema = buildSchema(`
     addProduct(product: ProductInput!): String
     updateProduct(product: ProductInput!): String
     
-    addShop(shop: Shop): Shop
-    updateShop(shop: Shop): Shop
+    addShop(shop: ShopInput): Shop
+    updateShop(shop: ShopInput): Shop
     
-    purchaseOrder(orders: [Order]): [Order]
+    purchaseOrder(orders: [OrderInput]): [Order]
     
   }
 `);
