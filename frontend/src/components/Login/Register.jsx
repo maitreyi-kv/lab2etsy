@@ -30,36 +30,45 @@ const Register = () => {
     event.preventDefault();
 
     const tryRegisterUser = async () => {
-      let config = {
-        method: 'post',
-        url: `${URL}/auth/register`,
-        headers: {},
-        data: {Name: username, Email: email, Password: password}
-      };
+      // Ref: https://graphql.org/graphql-js/graphql-clients/
+      var varsToPass = {Name: username, Password: password, Email: email}
+      var query = `mutation registerUser($Name: String!, $Password: String!, $Email: String!) {
+        registerUser(Name :$Name, Password :$Password, Email: $Email)
+      }`;
 
-      return axios(config)
-        .then(response => {
-          console.log("Rregitsering!", response.data)
-          setMessage(response.data.message);
-          return response.data.message;
+      fetch('http://localhost:4000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables: varsToPass,
         })
-        .catch(error => {
-          console.log("Error", error);
-          return error
+      })
+        .then(async r => {
+          let res = await r.json()
+          console.log("resss", res)
+          return res.data.registerUser
+        })
+        .then(msg => {
+          console.log("Response graphql", msg)
+          setMessage(msg)
+          if (msg === "Created User") {
+            navigate("/login");
+          }
         });
     }
 
     tryRegisterUser().then(res => {
-      if(res==="Created User") {
-          navigate("/login");
-      }
     }).catch(err => console.log("Error while creating user", err));
 
   }
 
   return (
     <div>
-      {login ? <Navigate to="/home" /> : ""}
+      {login ? <Navigate to="/home"/> : ""}
       <h1>Register</h1>
       {message && <h5>{message}</h5>}
       <Form noValidate style={{width: '60%', marginLeft: '100px'}}>
