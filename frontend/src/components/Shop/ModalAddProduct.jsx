@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 // import {useSelector} from 'react-redux';
+import jwt_decode from 'jwt-decode';
+
 import {URL} from '../../constants';
 import {useSelector} from 'react-redux';
 
@@ -115,26 +117,48 @@ function ModalAddProduct({ShopName}) {
     let response = await uploadImageFromURL(await getImageURL());
     console.log("Respose", response, ShopName, login)
 
-    const postProduct = async () => {
-      const resp = await axios.post(`${URL}/product`, {
-        ImageURL: response,
-        ShopName: ShopName,
+    const UserID = jwt_decode(login).UserID
+    console.log("uaser id", UserID)
+    // Ref: https://graphql.org/graphql-js/graphql-clients/
+    var varsToPass = { product: {
         Name: name,
-        Category: selectedCategory,
-        Description: description,
         Price: price,
-        QuantityAvailable: quantity
-      }, {
-        headers: login ? {Authorization: login} : {}
+        Description: description,
+        ImageURL: response,
+        QuantityAvailable: Number.parseInt(quantity),
+        Category: selectedCategory,
+        ShopName: ShopName,
+        UserID: UserID
+      }
+      }
+
+    console.log("Vars", JSON.stringify(varsToPass))
+
+    var query = `mutation addProduct($product: ProductInput!) {
+        addProduct(product: $product )
+      }`;
+
+    fetch('http://localhost:4000/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables: varsToPass,
+      })
+    })
+      .then(async r => {
+        let res = await r.json()
+        console.log("resss product===", res)
+        // return res.data.registerUser
+      })
+      .then(msg => {
+        console.log("Response graphql", msg)
+        setModalIsOpenToFalse()
+        window.location.reload(false);
       });
-      console.log("URL ===", resp.data);
-      return resp.data;
-    }
-
-    postProduct().then(res => console.log("Product respose posting", res)).catch(err => console.log("err", err));
-
-    setModalIsOpenToFalse()
-    window.location.reload(false);
   }
 
   const customStyles = {
